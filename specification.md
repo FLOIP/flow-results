@@ -6,10 +6,10 @@ A container and data format for describing a collection of interactions or "resp
 <table>
   <tr>
     <td>Authors</td>
-    <td>Mark Boots (VOTO Mobile)
-Peter Lubell-Doughtie (Ona)
-Eduardo Jezierski (InSTEDD)
-Evan Wheeler (UNICEF)</td>
+    <td>Mark Boots (VOTO Mobile)<br>
+Peter Lubell-Doughtie (Ona)<br>
+Eduardo Jezierski (InSTEDD)<br>
+Evan Wheeler (UNICEF)
   </tr>
   <tr>
     <td>Media Type</td>
