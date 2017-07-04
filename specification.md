@@ -41,6 +41,32 @@ The key words MUST, MUST NOT, REQUIRED, SHALL, SHALL NOT, SHOULD, SHOULD NOT, RE
 
 # Table of Contents
 
+   * [Flow Results Data Package](#flow-results-data-package)
+   * [Language](#language)
+   * [Table of Contents](#table-of-contents)
+   * [Introduction](#introduction)
+      * [Scope](#scope)
+   * [Terminology](#terminology)
+   * [Example](#example)
+   * [Specification](#specification)
+      * [Components](#components)
+      * [Descriptor](#descriptor)
+      * [Resource](#resource)
+      * [Resource Data (found at external path)](#resource-data-found-at-external-path)
+      * [Question Types](#question-types)
+         * [multiple_choice_one](#multiple_choice_one)
+         * [multiple_choice_many](#multiple_choice_many)
+         * [numeric](#numeric)
+         * [open](#open)
+         * [text](#text)
+         * [image](#image)
+         * [video](#video)
+         * [audio](#audio)
+         * [geo_point](#geo_point)
+         * [datetime](#datetime)
+         * [date](#date)
+         * [time](#time)
+
 # Introduction
 
 Within the field of ICT tools for humanitarian and development work (ICT4D), a range of software applications has emerged for digital data collection and mobile engagement with remote populations.  These applications employ a diversity of communication channels, such as text messaging, automated voice calls, unstructured supplementary service data (USSD), web-based forms, and in-person surveys with digital data entry.  Despite differences, many of these applications are based on a similar paradigm of "Flow-based" data collection using logical decision trees.  However, it was not previously possible to exchange data collected using different applications and vendors unless ad-hoc or one-to-one data mapping software was created.
