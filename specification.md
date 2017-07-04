@@ -86,6 +86,8 @@ The specification is self-sufficient and can be used independently, but it is al
 
 **Question**: A Question is a prompt to the Contact for a Response.  When looking at results data, knowledge of the nature of the question can help to analyze and visualize it.  For example, numeric question responses might be graphed on a scatter plot, while multiple-choice question responses are naturally visualized on a bar chart or pie chart.  Often additional information about the question is necessary beyond simply the responses, such as the complete set of choices presented in a multiple choice question.  It's important to clarify that questions might not be literal questions; they could be the output of a lookup, script, or logical analysis within a digital engagement system, but we refer to them uniformly for the sake of convenience as Questions.
 
+(TODO: We agreed that Question isn't the best terminology, but I found that while drafting the spec this made it much more legible and understandable, compared to "Variable" or "Result" which are much less precise.)
+
 # Example
 
 A minimal example of a Flow Results data package, stored as files on disk, is given here:
