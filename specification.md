@@ -526,7 +526,7 @@ The Response must be a string; it must be one from the set of `choices`.
     <td>choice_order</td>
     <td>Recommended</td>
     <td>When choices might be presented in random order across Contacts, should indicate the order the choices were presented in.</td>
-    <td>{'choice_order': ['female', 'male'] }</td>
+    <td>{"choice_order": ["female", "male"] }</td>
   </tr>
   <tr>
     <td></td>
@@ -583,10 +583,10 @@ The Response must be an array of strings, one for each choice selected by the Co
     <td>Example</td>
   </tr>
   <tr>
-    <td>choice_order</td>
+    <td>`choice_order`</td>
     <td>Recommended</td>
     <td>When choices might be presented in random order across Contacts, should indicate the order the choices were presented in.</td>
-    <td>{'choices': ['healthcare', 'education', 'jobs', 'roads'] }</td>
+    <td>{"choice_order": ["healthcare", "education", "jobs", "roads"] }</td>
   </tr>
   <tr>
     <td></td>
