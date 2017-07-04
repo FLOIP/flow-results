@@ -34,16 +34,9 @@ application/vnd.org.flowinterop.results+json</td>
   </tr>
 </table>
 
-
-# Language
-
-The key words MUST, MUST NOT, REQUIRED, SHALL, SHALL NOT, SHOULD, SHOULD NOT, RECOMMENDED, MAY, and OPTIONAL in this document are to be interpreted as described in RFC 2119.
-
 # Table of Contents
 
-   * [Flow Results Data Package](#flow-results-data-package)
    * [Language](#language)
-   * [Table of Contents](#table-of-contents)
    * [Introduction](#introduction)
       * [Scope](#scope)
    * [Terminology](#terminology)
@@ -66,6 +59,10 @@ The key words MUST, MUST NOT, REQUIRED, SHALL, SHALL NOT, SHOULD, SHOULD NOT, RE
          * [datetime](#datetime)
          * [date](#date)
          * [time](#time)
+
+# Language
+
+The key words MUST, MUST NOT, REQUIRED, SHALL, SHALL NOT, SHOULD, SHOULD NOT, RECOMMENDED, MAY, and OPTIONAL in this document are to be interpreted as described in RFC 2119.
 
 # Introduction
 
