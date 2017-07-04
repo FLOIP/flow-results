@@ -93,7 +93,7 @@ The specification is self-sufficient and can be used independently, but it is al
 
 A minimal example of a Flow Results data package, stored as files on disk, is given here:
 
-There is a Descriptor file in JSON format, e.g. `flow-results-example-package.json`:
+There is a Descriptor file in JSON format, e.g. `flow-results-example-1.json`:
 
 ```
 {
@@ -197,7 +197,7 @@ There is a Descriptor file in JSON format, e.g. `flow-results-example-package.js
 }
 ```
 
-Additionally, there is a data file containing the data described by this resource, in this example, "data/flow-results-example-1-data.json". This file provides all individual responses in the following JSON format:
+Additionally, there is a data file containing the data described by this resource, in this example, `data/flow-results-example-1-data.json`. This file provides all individual Responses in the following JSON format:
 
 ```
 [
