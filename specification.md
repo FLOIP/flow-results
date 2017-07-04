@@ -1,4 +1,5 @@
 Flow Results Data Package
+==========================
 
 A container and data format for describing a collection of interactions or "responses" reported by end-users of a digital system using the Flow Data paradigm.  It provides for the open publication, exchange, and analysis of Flow-generated interactions across supporting platforms.
 
@@ -56,11 +57,11 @@ The specification is self-sufficient and can be used independently, but it is al
 
 # Terminology
 
-**Contact**: A contact is an end-user of a digital interactive system, providing input or "responses" to the system.   Contacts can be human beings interacting via a channel such as IVR, SMS, USSD, social media messaging, web browsers, Contacts may also be physical entities (such as a waterpoint) or automated systems (programmable agents) that do not necessarily represent a human being.
+**Contact**: A Contact is an end-user of a digital interactive system, providing input or "responses" to the system.   Contacts can be human beings interacting via a channel such as IVR, SMS, USSD, social media messaging, web browsers, Contacts may also be physical entities (such as a waterpoint) or automated systems (programmable agents) that do not necessarily represent a human being.
 
-**Response: **A response is a single input given by a contact when prompted during an interaction with a digital interactive system.  As an example, answering a multiple choice question asking, "Are you male or female?" by choosing the female option constitutes providing a Response.
+**Response**: A Response is a single input given by a contact when prompted during an interaction with a digital interactive system.  As an example, answering a multiple choice question asking, "Are you male or female?" by choosing the female option constitutes providing a Response.
 
-**Question: **A question is a prompt to the Contact for a response.  When looking at results data, knowledge of the nature of the question can help to analyze and visualize it.  For example, numeric question responses might be graphed on a scatter plot, while multiple-choice question responses are naturally visualized on a bar chart or pie chart.  Often additional information about the question is necessary beyond simply the responses, such as the complete set of choices presented in a multiple choice question.  It's important to clarify that questions might not be literal questions; they could be the output of a lookup, script, or logical analysis within a digital engagement system, but we refer to them uniformly for the sake of convenience as Questions.
+**Question**: A Question is a prompt to the Contact for a Response.  When looking at results data, knowledge of the nature of the question can help to analyze and visualize it.  For example, numeric question responses might be graphed on a scatter plot, while multiple-choice question responses are naturally visualized on a bar chart or pie chart.  Often additional information about the question is necessary beyond simply the responses, such as the complete set of choices presented in a multiple choice question.  It's important to clarify that questions might not be literal questions; they could be the output of a lookup, script, or logical analysis within a digital engagement system, but we refer to them uniformly for the sake of convenience as Questions.
 
 # Example
 
@@ -968,9 +969,7 @@ Represents a video submitted by the Contact
 A string with the URL where the video can be retrieved. (TODO: Do we want to support inline video data?)
 
 ```
-
 "https://myexampleflowserver.com/resources/videos/23429837434.png"
-
 ```
 
 #### Type options (type_options)
@@ -1036,9 +1035,7 @@ Represents an audio recording submitted by the Contact
 A string with the URL where the audio can be retrieved. (TODO: Do we want to support inline audio data?)
 
 ```
-
 "https://myexampleflowserver.com/resources/audio/23429837435.png"
-
 ```
 
 #### Type options (type_options)
@@ -1104,9 +1101,7 @@ Represents a geospatial coordinate on the surface of the earth.
 An array of two floating point numbers with the latitude and longitude: `[lat, long]`
 
 ```
-
 [52.0835780,-106.6104880]
-
 ```
 
 #### Type options (type_options)
@@ -1166,9 +1161,7 @@ Represents a timestamp with both date and time
 A string containing the date and time in the RFC 3339 format with timezone extension:
 
 ```
-
 "2017-06-30T13:45:58+05:30"
-
 ```
 
 #### Type options (type_options)
@@ -1287,12 +1280,10 @@ Represents a time.  We caution that times are ambiguous without dates and timezo
 
 #### Response format
 
-A string containing the date in the format:
+A string containing the time in the 24h format:
 
 ```
-
 "14:58:35"
-
 ```
 
 #### Type options (type_options)
