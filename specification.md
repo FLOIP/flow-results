@@ -182,6 +182,13 @@ There is a Descriptor file in JSON format, e.g. `flow-results-example-package.js
             "type_options":{
 
             }
+          },
+          "ae54db":{
+            "type":"geo_point",
+            "label":"Where are you?",
+            "type_options":{
+
+            }
           }
         }
       }
@@ -195,7 +202,13 @@ Additionally, there is a data file containing the data described by this resourc
 ```
 [
   [ "2017-05-23T13:35:37-04:00", 20394823948, 923842093, "ae54d3", "female", {"option_order": ["male","female"]} ],
-  [ "2017-05-23T13:35:47-04:00", 20394823950, 923842093, "ae54d7", "chocolate", null ]
+  [ "2017-05-23T13:35:47-04:00", 20394823950, 923842093, "ae54d7", "chocolate", {} ],
+  [ "2017-05-24T15:15:37-04:00", 20394823952, 923842086, "ae54d3", "male", {"option_order": ["male","female"]} ],
+  [ "2017-05-23T15:16:12-04:00", 20394823953, 923842086, "ae54d7", "vanilla", {} ],
+  [ "2017-05-23T15:16:20-04:00", 20394823954, 923842086, "ae54d8", 196, {} ],
+  [ "2017-05-23T15:16:38-04:00", 20394823955, 923842086, "ae54da", "I am feeling curious.", {"type": "text", "language": "eng"} ],
+  [ "2017-05-23T17:25:12-04:00", 20394823956, 923842093, "ae54da", "https://myexampleflowserver.org/resources/audio/20394823956.ogg", {"type": "audio", "language": "eng", "format": "audio/ogg"} ],
+  [ "2017-05-23T17:25:47-04:00", 20394823957, 923842093, "ae54db", "[35.678323, -108.25343]", {} ]
 ]
 ```
 
