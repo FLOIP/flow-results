@@ -96,195 +96,107 @@ A minimal example of a Flow Results data package, stored as files on disk, is gi
 There is a Descriptor file in JSON format, e.g. `flow-results-example-package.json`:
 
 ```
-
-{  
-
+{
   "profile":"flow-results-package",
-
   "name":"flow-results-example-1",
-
   "flow_results_specification_version":"1.0.0-rc1",
-
   "created":"2017-06-30 15:35:27+00:00",
-
   "modified":"2017-06-30 15:38:05+00:00",
-
   "id":"b03ec84-77fd-4270-813b-0c698943f7ce",
-
   "title":"A nice title",
-
-  "resources":[  
-
-    {  
-
+  "resources":[
+    {
       "path":"data/flow-results-example-1-data.json",
-
       "name":"flow-results-example-1-data",
-
       "mediatype":"application/json",
-
       "encoding":"utf-8",
-
-      "schema":{  
-
-        "fields":[  
-
-          {  
-
+      "schema":{
+        "fields":[
+          {
             "name":"timestamp",
-
             "title":"Timestamp",
-
             "type":"datetime"
-
           },
-
-          {  
-
+          {
             "name":"row_id",
-
             "title":"Row ID",
-
             "type":"string"
-
           },
-
-          {  
-
+          {
             "name":"contact_id",
-
             "title":"Contact ID",
-
             "type":"string"
-
           },
-
-          {  
-
+          {
             "name":"question_id",
-
             "title":"Question ID",
-
             "type":"string"
-
           },
-
-          {  
-
+          {
             "name":"response",
-
             "title":"Response",
-
             "type":"any"
-
           },
-
-          {  
-
+          {
             "name":"response_metadata",
-
             "title":"Response Metadata",
-
             "type":"object"
-
           }
-
         ],
-
-        "questions":{  
-
-          "ae54d3":{  
-
+        "questions":{
+          "ae54d3":{
             "type":"multiple_choice",
-
             "label":"Are you male or female?",
-
-            "type_options":{  
-
-              "choices":[  
-
+            "type_options":{
+              "choices":[
                 "male",
-
                 "female",
-
                 "not identified"
-
               ]
-
             }
-
           },
-
-          "ae54d7":{  
-
+          "ae54d7":{
             "type":"multiple_choice",
-
             "label":"Favorite ice cream flavor?",
-
-            "type_options":{  
-
-              "choices":[  
-
+            "type_options":{
+              "choices":[
                 "chocolate",
-
                 "vanilla",
-
                 "strawberry"
-
               ]
-
             }
-
           },
-
-          "ae54d8":{  
-
+          "ae54d8":{
             "type":"numeric",
-
             "label":"How much do you weigh, in lbs?",
-
-            "type_options":{  
-
-              "range":[  
-
+            "type_options":{
+              "range":[
                 1,
-
                 250
-
               ]
-
             }
-
           },
-
-          "ae54da":{  
-
+          "ae54da":{
             "type":"open",
-
             "label":"How are you feeling today?",
-
-            "type_options":{  
+            "type_options":{
 
             }
-
           }
-
         }
-
       }
-
     }
-
   ]
-
 }
-
 ```
 
 Additionally, there is a data file containing the data described by this resource, in this example, "data/flow-results-example-1-data.json". This file provides all individual responses in the following JSON format:
 
 ```
-
+[
+  [ "2017-05-23T13:35:37-04:00", 20394823948, 923842093, "ae54d3", "female", {"option_order": ["male","female"]} ],
+  [ "2017-05-23T13:35:47-04:00", 20394823950, 923842093, "ae54d7", "chocolate", null ]
+]
 ```
 
 # Specification
@@ -369,165 +281,85 @@ The `schema` property of the resource must be provided inline, and must not use 
 The `schema` property must contain a `fields` object describing the 6 columns within the Resource data. These fields are common to all Flow Results Packages, but are provided here for compatibility with software designed to dynamically read Tabular Data Resources:
 
 ```
-
-{  
-
-  "fields":[  
-
-    {  
-
+{
+  "fields":[
+    {
       "name":"timestamp",
-
       "title":"Timestamp",
-
       "type":"datetime"
-
     },
-
-    {  
-
+    {
       "name":"row_id",
-
       "title":"Row ID",
-
       "type":"string"
-
     },
-
-    {  
-
+    {
       "name":"contact_id",
-
       "title":"Contact ID",
-
       "type":"string"
-
     },
-
-    {  
-
+    {
       "name":"question_id",
-
       "title":"Question ID",
-
       "type":"string"
-
     },
-
-    {  
-
+    {
       "name":"response",
-
       "title":"Response",
-
       "type":"any"
-
     },
-
-    {  
-
+    {
       "name":"response_metadata",
-
       "title":"Response Metadata",
-
       "type":"object"
-
     }
-
   ]
-
 }
-
 ```
 
 The `schema` property must additionally contain a `questions` object describing metadata for all the Questions pertaining to Responses in this package.  The object identifier (e.g.: 'ae54d3') of questions in this object connects to the Question ID found in each Response row:
 
 ```
-
-{  
-
-  "questions":{  
-
-    "ae54d3":{  
-
+{
+  "questions":{
+    "ae54d3":{
       "type":"multiple_choice",
-
       "label":"Are you male or female?",
-
-      "type_options":{  
-
-        "choices":[  
-
+      "type_options":{
+        "choices":[
           "male",
-
           "female",
-
           "not identified"
-
         ]
-
       }
-
     },
-
-    "ae54d7":{  
-
+    "ae54d7":{
       "type":"multiple_choice",
-
       "label":"Favorite ice cream flavor?",
-
-      "type_options":{  
-
-        "choices":[  
-
+      "type_options":{
+        "choices":[
           "chocolate",
-
           "vanilla",
-
           "strawberry"
-
         ]
-
       }
-
     },
-
-    "ae54d8":{  
-
+    "ae54d8":{
       "type":"numeric",
-
       "label":"How much do you weigh, in lbs?",
-
-      "type_options":{  
-
-        "range":[  
-
-          1,
-
-          250
-
-        ]
-
+      "type_options":{
+        "range":[1, 350]
       }
-
     },
-
-    "ae54da":{  
-
+    "ae54da":{
       "type":"open",
-
       "label":"How are you feeling today?",
-
-      "type_options":{  
+      "type_options":{
 
       }
-
     }
-
   }
-
 }
-
 ```
 
 The following properties are required for each question:
@@ -573,15 +405,10 @@ datetime</td>
 The Resource file or URL must provide the Response data in JSON "row array" format, as shown in the following example:
 
 ```
-
 [
-
-  [ "2017-05-23T13:35:37-04:00", 20394823948, 923842093, "ae54d3", "female", {"option_order": “male,female”} ],
-
-  [ "2017-05-23T13:35:47-04:00", 20394823950, 923842093, "ae54d7", "chocolate", null ],
-
+  [ "2017-05-23T13:35:37-04:00", 20394823948, 923842093, "ae54d3", "female", {"option_order": ["male","female"]} ],
+  [ "2017-05-23T13:35:47-04:00", 20394823950, 923842093, "ae54d7", "chocolate", null ]
 ]
-
 ```
 
 The Resource must be valid JSON according to RFC 7159.  No enhancements or constraints are added beyond the JSON specification.
@@ -707,9 +534,7 @@ Represents a selection of one or more choices from a set of discrete choices.
 The Response must be an array of strings, one for each choice selected by the Contact. Each string must be one from the set of `choices`:
 
 ```
-
-['education', 'roads']
-
+["education", "roads"]
 ```
 
 #### Type options (type_options)
@@ -766,7 +591,11 @@ Represents a numeric response; a measurement of a single number.
 
 #### Response format
 
-An integer or floating-point number.
+An integer or floating-point number:
+
+```
+35
+```
 
 #### Type options (type_options)
 
@@ -871,9 +700,7 @@ Represents any arbitrary text response.
 A string:
 
 ```
-
 "I am learning this specification."
-
 ```
 
 #### Type options (type_options)
@@ -933,9 +760,7 @@ Represents a picture submitted by the Contact.
 A string with the URL where the image can be retrieved. (TODO: Do we want to support inline image data?)
 
 ```
-
 "https://myexampleflowserver.com/resources/image/23429837433.png"
-
 ```
 
 #### Type options (type_options)
@@ -1247,9 +1072,7 @@ Represents a date.  We caution that dates are ambiguous without times and timezo
 A string containing the date in the format:
 
 ```
-
 "2017-06-30"
-
 ```
 
 #### Type options (type_options)
