@@ -202,13 +202,13 @@ Additionally, there is a data file containing the data described by this resourc
 
 ```
 [
-  [ "2017-05-23T13:35:37-04:00", 20394823948, 923842093, "ae54d3", "female", {"option_order": ["male","female"]} ],
-  [ "2017-05-23T13:35:47-04:00", 20394823950, 923842093, "ae54d7", "chocolate", {} ],
-  [ "2017-05-24T15:15:37-04:00", 20394823952, 923842086, "ae54d3", "male", {"option_order": ["male","female"]} ],
-  [ "2017-05-23T15:16:12-04:00", 20394823953, 923842086, "ae54d7", "vanilla", {} ],
-  [ "2017-05-23T15:16:20-04:00", 20394823954, 923842086, "ae54d8", 196, {} ],
-  [ "2017-05-23T15:16:38-04:00", 20394823955, 923842086, "ae54da", "I am feeling curious.", {"type": "text", "language": "eng"} ],
-  [ "2017-05-23T17:25:12-04:00", 20394823956, 923842093, "ae54da", "https://myexampleflowserver.org/resources/audio/20394823956.ogg", {"type": "audio", "language": "eng", "format": "audio/ogg"} ],
+  [ "2017-05-23T13:35:37.356-04:00", 20394823948, 923842093, "ae54d3", "female", {"option_order": ["male","female"]} ],
+  [ "2017-05-23T13:35:47.012-04:00", 20394823950, 923842093, "ae54d7", "chocolate", {} ],
+  [ "2017-05-24T15:15:37.981-04:00", 20394823952, 923842086, "ae54d3", "male", {"option_order": ["male","female"]} ],
+  [ "2017-05-23T15:16:12.005-04:00", 20394823953, 923842086, "ae54d7", "vanilla", {} ],
+  [ "2017-05-23T15:16:20.781-04:00", 20394823954, 923842086, "ae54d8", 196, {} ],
+  [ "2017-05-23T15:16:38.119-04:00", 20394823955, 923842086, "ae54da", "I am feeling curious.", {"type": "text", "language": "eng"} ],
+  [ "2017-05-23T17:25:12.722-04:00", 20394823956, 923842093, "ae54da", "https://myexampleflowserver.org/resources/audio/20394823956.ogg", {"type": "audio", "language": "eng", "format": "audio/ogg"} ],
   [ "2017-05-23T17:25:47-04:00", 20394823957, 923842093, "ae54db", "[35.678323, -108.25343]", {} ]
 ]
 ```
@@ -420,8 +420,8 @@ The Resource file or URL must provide the Response data in JSON "row array" form
 
 ```
 [
-  [ "2017-05-23T13:35:37-04:00", 20394823948, 923842093, "ae54d3", "female", {"option_order": ["male","female"]} ],
-  [ "2017-05-23T13:35:47-04:00", 20394823950, 923842093, "ae54d7", "chocolate", null ]
+  [ "2017-05-23T13:35:37.119-04:00", 20394823948, 923842093, "ae54d3", "female", {"option_order": ["male","female"]} ],
+  [ "2017-05-23T13:35:47.822-04:00", 20394823950, 923842093, "ae54d7", "chocolate", null ]
 ]
 ```
 
@@ -439,8 +439,8 @@ Each row array shall provide exactly 6 elements ("columns") describing a single 
   <tr>
     <td>1</td>
     <td>Timestamp</td>
-    <td>The date and time the response was given by the contact. The timestamp must be formatted according to RFC 3339, and indicate the timezone offset of the timestamp, in the following format: `2017-05-23T13:35:37-04:00`. (If the timestamp is in UTC, the timezone offset of +00:00 shall be included.)</td>
-    <td>2017-05-23T13:35:37-04:00</td>
+    <td>The date and time the response was given by the contact. The timestamp must be formatted according to RFC 3339, and indicate the timezone offset of the timestamp, in the following format: `2017-05-23T13:35:37-04:00`. (If the timestamp is in UTC, the timezone offset of +00:00 shall be included.)  The seconds field may include a decimal point with up to six trailing digits to indicate milliseconds or microseconds, such as `2017-05-23T13:35:37.011208-04:00`. Systems are recommended to preserve as much precision as is available in the captured timestamp, and should parse up to 6 decimal digits of sub-second precision.</td>
+    <td>2017-05-23T13:35:37.291-04:00</td>
   </tr>
   <tr>
     <td>2</td>
