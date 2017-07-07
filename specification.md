@@ -245,12 +245,12 @@ The Descriptor JSON object must contain the following required metadata properti
   </tr>
   <tr>
     <td>`created`</td>
-    <td>The timestamp for when this package was created/published. This must be in the format of RFC 3339.</td>
+    <td>The timestamp for when this package was created/published. This must be in the format of RFC 3339, section 5.6, "date-time".</td>
     <td>'2017-06-30 15:35:27+00:00'</td>
   </tr>
   <tr>
     <td>`modified`</td>
-    <td>The latest timestamp for when the data in this package was refreshed/updated/changed. This must be in the format of RFC 3339.</td>
+    <td>The latest timestamp for when the data in this package was refreshed/updated/changed. This must be in the format of RFC 3339, section 5.6, "date-time".</td>
     <td>'2017-06-30 15:38:05+00:00'</td>
   </tr>
 </table>
@@ -439,7 +439,9 @@ Each row array shall provide exactly 6 elements ("columns") describing a single 
   <tr>
     <td>1</td>
     <td>Timestamp</td>
-    <td>The date and time the response was given by the contact. The timestamp must be formatted according to RFC 3339, and indicate the timezone offset of the timestamp, in the following format: `2017-05-23T13:35:37-04:00`. (If the timestamp is in UTC, the timezone offset of +00:00 shall be included.)  The seconds field may include a decimal point with up to six trailing digits to indicate milliseconds or microseconds, such as `2017-05-23T13:35:37.011208-04:00`. Systems are recommended to preserve as much precision as is available in the captured timestamp, and should parse up to 6 decimal digits of sub-second precision.</td>
+    <td>The date and time the response was given by the contact. The timestamp must be formatted according to RFC 3339, section 5.6, `date-time`, and must indicate the timezone offset of the timestamp. An example is the following format: `2017-05-23T13:35:37-04:00`.  If the timestamp is in UTC, the timezone offset of +00:00 shall be used, instead of the `Z` extension.
+    
+    Consistent with RFC 3339, the seconds field may include a decimal point with up to six trailing digits to indicate sub-second precision (e.g. milliseconds or microseconds), such as `2017-05-23T13:35:37.011208-04:00`. Systems are recommended to preserve as much precision as is available in the original timestamp.</td>
     <td>2017-05-23T13:35:37.291-04:00</td>
   </tr>
   <tr>
@@ -1063,7 +1065,7 @@ Represents a timestamp with both date and time
 
 #### Response format
 
-A string containing the date and time in the RFC 3339 format with timezone extension:
+A string containing the date and time in the RFC 3339 `date-time` format with timezone extension:
 
 ```
 "2017-06-30T13:45:58+05:30"
