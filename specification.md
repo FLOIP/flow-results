@@ -9,6 +9,7 @@ A container and data format for describing a collection of interactions or "resp
     <td>Mark Boots (VOTO Mobile)<br>
 Peter Lubell-Doughtie (Ona)<br>
 Eduardo Jezierski (InSTEDD)<br>
+Gustavo Giráldez (InSTEDD)<br>
 Evan Wheeler (UNICEF)
   </tr>
   <tr>
