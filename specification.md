@@ -1074,8 +1074,4 @@ A string containing the time in the 24h format:
   </tr>
 </table>
 
-# API Usage
 
-Specifications for API-based access to Flow Results data packages
-
-TODO

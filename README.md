@@ -214,3 +214,4 @@ Additionally, there is a data file containing the data described by this resourc
   [ "2017-05-23T17:25:47-04:00", 20394823957, 923842093, "ae54db", "[35.678323, -108.25343]", {} ]
 ]
 ```
+
