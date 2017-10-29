@@ -85,6 +85,8 @@ The Resource contains the interaction results.  The Resource must conform to the
 
 Inline data (data in JSON format within the Descriptor) must not be used. This means that a `path` must be provided for the Resource. The Resource path shall point to a file reference (for packages stored on disk) or a URL.
 
+The `access_method` of the Resource is an optional parameter, and can be either `api` or `file`. If the access method is `api`, it indicates the resource can be queried using the [API Usage]((#api-usage) specification, with support for pagination and filtering. If the access method is `file`, it indicates all responses are available in a static JSON file. The default if this parameter is not provided is `file`.
+
 The `schema` property of the resource must be provided inline, and must not use an external schema file or URL.
 
 The `schema` property must contain a `fields` object describing the 6 columns within the Resource data. These fields are common to all Flow Results Packages, but are provided here for compatibility with software designed to dynamically read Tabular Data Resources:
