@@ -35,7 +35,10 @@ The Descriptor JSON object must contain the following required metadata properti
   </tr>
   <tr>
     <td>`modified`</td>
-    <td>The latest timestamp for when the data in this package was refreshed/updated/changed. This must be in the format of RFC 3339, section 5.6, "date-time".</td>
+    <td>A version control indicator for the package. Timestamps are used to indicate different versions of a package's schema. This must be in the format of RFC 3339, section 5.6, "date-time".
+      <br><br>Limited changes are allowed across versions of the same package (i.e.: different versions with the same `uuid`.). Specifically, new versions of the same package may add additional `questions` within the schema; however, questions may not be removed, and the metadata for existing questions may not be changed.
+      <br><br>If this is the original version of the package, `created` and `modified` will be the same.
+    </td>
     <td>'2017-06-30 15:38:05+00:00'</td>
   </tr>
   <tr>
