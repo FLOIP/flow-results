@@ -1095,3 +1095,58 @@ A string containing the time in the 24h format:
 </table>
 
 
+# API Access
+
+When implementations provide access to Packages and Resource Data via an API, the following standard endpoints and parameters shall be used.
+
+## API Authentication
+
+Two methods of authentication are supported for clients accessing Flow Results APIs.  All methods should use HTTPS for security.
+
+### Token-based authentication, compatible with OAuth2
+
+Implementations must support token-based authentication, via the "Authorization" HTTP header, using the OAuth2-compliant "Bearer" token method.  An example of a complete authorization header is:
+
+```
+Authorization: Bearer 0b79bab50daca910b000d4f1a2b675d604257e42
+```
+
+Implementations can determine the format of tokens.  The issuance, expiry, and exchange of tokens is left outside the scope of the Flow Results specification.
+
+### HTTPS Basic Auth
+
+Providing additional support for HTTPS Basic Auth is optional, but recommended.
+
+## API Endpoints
+
+Five standard API endpoints are defined for Flow Results servers operating in the Data Aggregator role. Two "push" endpoints are used to send flow results to a system playing the Data Aggregator role.  Three "pull" endpoints are used to access flow results served by a Data Aggregator.
+
+Endpoints are defined relative to a base URL chosen by the implementation, i.e.:
+
+*Base URL*: https://my.example-flow-results-server/api/v1
+
+### "Push" endpoints to submit flow results to a Data Aggregator
+
+#### Publish a Package:
+
+*POST [Base URL]/flow-results/packages*
+
+#### Publish Responses to a Package:
+
+*POST [Base URL]/flow-results/packages/[uuid]/responses*
+
+### "Get" endpoints to retrive flow results from a Data Aggregator
+
+#### List all Flow Results Packages
+
+*GET [Base URL]/flow-results/packages*
+
+#### Get the Descriptor of a Package
+
+*GET [Base URL]/flow-results/packages/[uuid]*
+
+#### Get Responses for a Package
+
+*GET [Base URL]/flow-results/packages/[uuid]/responses*
+
+
