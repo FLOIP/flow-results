@@ -6,6 +6,7 @@
   * [Descriptor](specification.md#descriptor)
   * [Resource](specification.md#resource)
   * [Resource Data](specification.md#resource-data)
+  * [Results Versioning](specification.md#results-versioning)
   * [Question Types](specification.md#question-types)
     * [select_one](specification.md#select_one)
     * [select_many](specification.md#select_many)
