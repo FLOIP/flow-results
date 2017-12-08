@@ -110,6 +110,7 @@ There is a Descriptor file in JSON format, e.g. `flow-results-example-1.json`:
     {
       "path":"data/flow-results-example-1-data.json",
       "name":"flow-results-example-1-data",
+      "access_method":"file",
       "mediatype":"application/json",
       "encoding":"utf-8",
       "schema":{
