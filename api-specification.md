@@ -1,6 +1,6 @@
 # API Access
 
-When implementations provide access to Packages and Resource Data via an API, the following standard endpoints and parameters shall be used.
+The Flow Results specification is designed to be useful in both file-based and API-based environments. File-based usage is ideal for archiving and transferring data manually between systems. However, in many production situations, interoperable systems are likely to exchange data via HTTP-based API services. When implementations provide access to Flow Results Packages and Responses via an API, the following standardized endpoints, parameters, and envelope formats shall be used.
 
 ## API Authentication
 
@@ -22,7 +22,7 @@ Providing additional support for HTTPS Basic Auth is optional, but recommended.
 
 ## API Request and Response format
 
-The Flow Results API adheres to the [JSON API specification](http://jsonapi.org/format/), version 1.0, a specification for how a client should request that resources be fetched or modified, and how a server should respond to those requests, via a standard JSON structure.  All API requests and responses defined below reflect the JSON API norms for query parameters, pagination, and envelope structure. This allows API clients to make use of standard [JSON API libraries](http://jsonapi.org/implementations/).
+The Flow Results API adheres to the [JSON API](http://jsonapi.org/format/) specification, version 1.0, an open standard for how a client should request that resources be fetched or modified, and how a server should respond to those requests, via JSON.  All API requests and responses defined below reflect the JSON API norms for query parameters and pagination. JSON API also introduces an envelope structure to embed the Flow Results JSON within additional metadata. Adopting JSON API allows API clients to make use of standard [JSON API libraries](http://jsonapi.org/implementations/).
 
 ## API Endpoints
 
