@@ -30,7 +30,7 @@ Five standard API endpoints are defined for Flow Results servers operating in th
 
 Endpoints are defined relative to a base URL chosen by the implementation, i.e.:
 
-*Base URL*: https://my.example-flow-results-server/api/v1
+_Base URL_: [https://my.example-flow-results-server/api/v1](https://my.example-flow-results-server/api/v1)
 
 ### "Push" endpoints to submit flow results to a Data Aggregator
 
@@ -38,15 +38,15 @@ Endpoints are defined relative to a base URL chosen by the implementation, i.e.:
 
 This endpoint is used to publish a Package descriptor for the first time to a Data Aggregator.
 
-*URL*: POST [Base URL]/flow-results/packages
+_URL_: POST \[Base URL\]/flow-results/packages
 
-*Query parameters*: None
+_Query parameters_: None
 
-*Request body*: The request body shall specify the `type` of `packages`. It shall contain, within the `attributes` parameter, the JSON structure of the Descriptor.
+_Request body_: The request body shall specify the `type` of `packages`. It shall contain, within the `attributes` parameter, the JSON structure of the Descriptor.
 
-The `id` of the Descriptor can be omitted (or null) if the client wants the Data Aggregator (server) to assign a new UUID for this package.  If an `id` is provided, the client must ensure that the UUID does not conflict with a Package `id` that already exists on the Data Aggregator; servers must reject requests with `id` conflicts. This is consistent with the [JSON API specification](http://jsonapi.org/format/#crud-creating-client-ids) for client-generated IDs:
+The `id` of the Descriptor can be omitted \(or null\) if the client wants the Data Aggregator \(server\) to assign a new UUID for this package.  If an `id` is provided, the client must ensure that the UUID does not conflict with a Package `id` that already exists on the Data Aggregator; servers must reject requests with `id` conflicts. This is consistent with the [JSON API specification](http://jsonapi.org/format/#crud-creating-client-ids) for client-generated IDs:
 
-A server MAY accept a client-generated ID along with a request to create a resource. An ID MUST be specified with an id key, the value of which MUST be a universally unique identifier. The client SHOULD use a properly generated and formatted UUID as described in RFC 4122 [RFC4122]. A server MUST return 403 Forbidden in response to an unsupported request to create a resource with a client-generated ID.
+A server MAY accept a client-generated ID along with a request to create a resource. An ID MUST be specified with an id key, the value of which MUST be a universally unique identifier. The client SHOULD use a properly generated and formatted UUID as described in RFC 4122 \[RFC4122\]. A server MUST return 403 Forbidden in response to an unsupported request to create a resource with a client-generated ID.
 
 _Request example:_
 
@@ -150,7 +150,7 @@ Accept: application/vnd.api+json
 }
 ```
 
-*Response*:
+_Response_:
 
 The response from the server must adhere to the [JSON API specification](http://jsonapi.org/format/#crud-creating-responses) for POST responses.
 
@@ -260,16 +260,15 @@ Content-Type: application/vnd.api+json
 }
 ```
 
-
 #### Publish Responses to a Package:
 
 This endpoint is used to publish a collection of Responses for a Package to a Data Aggregator. The POST request can be used multiple times to publish additional responses in batches.  Clients should use batching whenever appropriate instead of posting responses individually.
 
-*URL*: POST [Base URL]/flow-results/packages/[id]/responses
+_URL_: POST \[Base URL\]/flow-results/packages/\[id\]/responses
 
-*Query parameters*: None
+_Query parameters_: None
 
-*Request body*: The request body shall specify the `type` of `responses`. It shall contain, within the `attributes` parameter, a single `responses` attribute, containing the standard Flow Results row array.
+_Request body_: The request body shall specify the `type` of `responses`. It shall contain, within the `attributes` parameter, a single `responses` attribute, containing the standard Flow Results row array.
 
 _Request example:_
 
@@ -333,7 +332,7 @@ Accept: application/vnd.api+json
 }
 ```
 
-*Response body*: The response from the server must adhere to the [JSON API specification](http://jsonapi.org/format/#crud-creating-responses) for POST responses.  Additionally, servers should make use of the `204 No Content` response mechanism to report acceptance to clients without sending back long documents.
+_Response body_: The response from the server must adhere to the [JSON API specification](http://jsonapi.org/format/#crud-creating-responses) for POST responses.  Additionally, servers should make use of the `204 No Content` response mechanism to report acceptance to clients without sending back long documents.
 
 _Response example:_
 
@@ -348,11 +347,11 @@ Content-Type: application/vnd.api+json
 
 This endpoint is used to request a list of the Flow Results Packages available on the server for the authorized user.
 
-*URL*: GET [Base URL]/flow-results/packages
+_URL_: GET \[Base URL\]/flow-results/packages
 
-*Query parameters*: None
+_Query parameters_: None
 
-*Request body*: None
+_Request body_: None
 
 _Request example:_
 
@@ -361,7 +360,7 @@ GET [Base URL]/flow-results/packages HTTP/1.1
 Accept: application/vnd.api+json
 ```
 
-*Response body*: The response from the server must adhere to the [JSON API specification](http://jsonapi.org/format/#fetching-resources-responses) for fetching a collection of resources. The `data` array includes the list of package resources. Implementations may decide what summary information they want to publish in the `attributes` for each package.
+_Response body_: The response from the server must adhere to the [JSON API specification](http://jsonapi.org/format/#fetching-resources-responses) for fetching a collection of resources. The `data` array includes the list of package resources. Implementations may decide what summary information they want to publish in the `attributes` for each package.
 
 _Response example:_
 
@@ -424,11 +423,11 @@ Content-Type: application/vnd.api+json
 
 This endpoint is used to request the Descriptor of a Flow Results Package
 
-*URL*: GET [Base URL]/flow-results/packages/[id]
+_URL_: GET \[Base URL\]/flow-results/packages/\[id\]
 
-*Query parameters*: None
+_Query parameters_: None
 
-*Request body*: None
+_Request body_: None
 
 _Request example:_
 
@@ -437,7 +436,7 @@ GET [Base URL]/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa HTTP/1
 Accept: application/vnd.api+json
 ```
 
-*Response body*: The response from the server must adhere to the [JSON API specification](http://jsonapi.org/format/#fetching-resources-responses) for fetching a resource.
+_Response body_: The response from the server must adhere to the [JSON API specification](http://jsonapi.org/format/#fetching-resources-responses) for fetching a resource.
 
 _Response example:_
 
@@ -553,19 +552,19 @@ Content-Type: application/vnd.api+json
 
 This endpoint is used to request some or all Responses on a Flow Results Package. It supports pagination for large data sets, and a minimum set of filter parameters.  Implementations may add support for additional filters.
 
-*URL*: GET [Base URL]/flow-results/packages/[id]/responses
+_URL_: GET \[Base URL\]/flow-results/packages/\[id\]/responses
 
-*Query parameters*:
+_Query parameters_:
 
-  * `filter[max-version]`: Only included Responses recorded on versions of this Package less recent than and including this version. (This is a timestamp corresponding to the `modified` field of a Descriptor.)
-  * `filter[min-version]`: Only include Responses recorded on versions of this Package more recent than and including this version. (This is a timestamp corresponding to the `modified` field of a Descriptor.)
-  * `filter[start-timestamp]`: Only show Responses that were recorded after this timestamp (exclusive). (This is a timestamp in the format of RFC 3339, section 5.6, `date-time`.)
-  * `filter[end-timestamp]`: Only show Responses that were recorded before and on this timestamp (inclusive). (This is a timestamp in the format of RFC 3339, section 5.6, `date-time`.)
-  * `page[size]`: The requested number of responses per pagination page
-  * `page[afterCursor]`: The response `row_id` to requests responses after this id, when paginating forward
-  * `page[beforeCursor]`: The response `row_id` to request responses prior to this id, when paginating in reverse 
+* `filter[max-version]`: Only included Responses recorded on versions of this Package less recent than and including this version. \(This is a timestamp corresponding to the `modified` field of a Descriptor.\)
+* `filter[min-version]`: Only include Responses recorded on versions of this Package more recent than and including this version. \(This is a timestamp corresponding to the `modified` field of a Descriptor.\)
+* `filter[start-timestamp]`: Only show Responses that were recorded after this timestamp \(exclusive\). \(This is a timestamp in the format of RFC 3339, section 5.6, `date-time`.\)
+* `filter[end-timestamp]`: Only show Responses that were recorded before and on this timestamp \(inclusive\). \(This is a timestamp in the format of RFC 3339, section 5.6, `date-time`.\)
+* `page[size]`: The requested number of responses per pagination page
+* `page[afterCursor]`: The response `row_id` to requests responses after this id, when paginating forward
+* `page[beforeCursor]`: The response `row_id` to request responses prior to this id, when paginating in reverse 
 
-*Request body*: None
+_Request body_: None
 
 _Request example:_
 
@@ -574,7 +573,7 @@ GET [Base URL]/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa/respon
 Accept: application/vnd.api+json
 ```
 
-*Response body*: The response from the server must adhere to the [JSON API specification](http://jsonapi.org/format/#fetching-resources-responses) for fetching a resource. The `type` of the resource must be `responses`.  The `attributes` field contains a single attribute `responses`, containing the results row array in Flow Results format.
+_Response body_: The response from the server must adhere to the [JSON API specification](http://jsonapi.org/format/#fetching-resources-responses) for fetching a resource. The `type` of the resource must be `responses`.  The `attributes` field contains a single attribute `responses`, containing the results row array in Flow Results format.
 
 _Response example:_
 
@@ -648,5 +647,6 @@ Content-Type: application/vnd.api+json
     }
 }
 ```
+
 
 
