@@ -265,15 +265,72 @@ Content-Type: application/vnd.api+json
 
 This endpoint is used to publish a collection of Responses for a Package to a Data Aggregator. The POST request can be used multiple times to publish additional responses in batches.  Clients should use batching whenever appropriate instead of posting responses individually.
 
-*URL*: POST [Base URL]/flow-results/packages/[uuid]/responses
+*URL*: POST [Base URL]/flow-results/packages/[id]/responses
 
 *Query parameters*: None
 
-*Request body*: The request body shall specify the `type` of `responses`. It shall contain, within the `attributes` parameter, the JSON row array structure.
+*Request body*: The request body shall specify the `type` of `responses`. It shall contain, within the `attributes` parameter, a single `responses` attribute, containing the standard Flow Results row array.
 
 _Request example:_
 
 ```
+POST [Base URL]/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa/responses HTTP/1.1
+Content-Type: application/vnd.api+json
+Accept: application/vnd.api+json
+
+{  
+   "data":{  
+      "type":"responses",
+      "id":"0c364ee1-0305-42ad-9fc9-2ec5a80c55fa",
+      "attributes":{  
+         "responses":[  
+            [  
+               "2015-11-26 04:33:26",
+               "11393115",
+               "10825354",
+               "1448506769745_42",
+               "Man",
+               {}
+            ],
+            [  
+               "2015-11-26 04:33:31",
+               "11393119",
+               "10825354",
+               "1448506773018_89",
+               "30.0000",
+               {}
+            ],
+            [  
+               "2015-11-26 04:33:35",
+               "11393126",
+               "10825354",
+               "1448506774930_30",
+               "https://go.votomobile.org/audiofiles/download//original",
+               {  
+                  "type":"audio",
+                  "format":"audio/wav"
+               }
+            ],
+            [  
+               "2015-11-26 04:34:07",
+               "11393169",
+               "10825354",
+               "1448506769745_42",
+               "Woman",
+               {}
+            ],
+            [  
+               "2015-11-26 04:34:13",
+               "11393172",
+               "10825354",
+               "1448506773018_89",
+               "40.0000",
+               {}
+            ]
+         ]
+      }
+   }
+}
 ```
 
 *Response body*: The response from the server must adhere to the [JSON API specification](http://jsonapi.org/format/#crud-creating-responses) for POST responses.  Additionally, servers should make use of the `204 No Content` response mechanism to report acceptance to clients without sending back long documents.
@@ -281,6 +338,8 @@ _Request example:_
 _Response example:_
 
 ```
+HTTP/1.1 204 No Content
+Content-Type: application/vnd.api+json
 ```
 
 ### "Get" endpoints to retrive flow results from a Data Aggregator
@@ -307,6 +366,9 @@ Accept: application/vnd.api+json
 _Response example:_
 
 ```
+HTTP/1.1 200 OK
+Content-Type: application/vnd.api+json
+
 {
     "links": {
         "self": "https://go.votomobile.org/flow-results/packages?page%5Bsize%5D=100",
@@ -380,6 +442,9 @@ Accept: application/vnd.api+json
 _Response example:_
 
 ```
+HTTP/1.1 200 OK
+Content-Type: application/vnd.api+json
+
 {
     "links": {
         "self": "https://go.votomobile.org/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa"
@@ -514,6 +579,9 @@ Accept: application/vnd.api+json
 _Response example:_
 
 ```
+HTTP/1.1 200 OK
+Content-Type: application/vnd.api+json
+
 {
     "data": {
         "type": "flow-results-data",
