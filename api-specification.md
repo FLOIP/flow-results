@@ -486,6 +486,99 @@ _Response example:_
 
 #### Get Responses for a Package
 
-*GET [Base URL]/flow-results/packages/[uuid]/responses*
+This endpoint is used to request some or all Responses on a Flow Results Package. It supports pagination for large data sets, and a minimum set of filter parameters.  Implementations may add support for additional filters.
+
+*URL*: GET [Base URL]/flow-results/packages/[id]/responses
+
+*Query parameters*:
+
+  * `filter[max-version]`: Only included Responses recorded on versions of this Package less recent than and including this version. (This is a timestamp corresponding to the `modified` field of a Descriptor.)
+  * `filter[min-version]`: Only include Responses recorded on versions of this Package more recent than and including this version. (This is a timestamp corresponding to the `modified` field of a Descriptor.)
+  * `filter[start-timestamp]`: Only show Responses that were recorded after this timestamp (exclusive). (This is a timestamp in the format of RFC 3339, section 5.6, `date-time`.)
+  * `filter[end-timestamp]`: Only show Responses that were recorded before and on this timestamp (inclusive). (This is a timestamp in the format of RFC 3339, section 5.6, `date-time`.)
+  * `page[size]`: The requested number of responses per pagination page
+  * `page[afterCursor]`: The response `row_id` to requests responses after this id, when paginating forward
+  * `page[beforeCursor]`: The response `row_id` to request responses prior to this id, when paginating in reverse 
+
+*Request body*: None
+
+_Request example:_
+
+```
+GET [Base URL]/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa/responses?page[size]=5 HTTP/1.1
+Accept: application/vnd.api+json
+```
+
+*Response body*: The response from the server must adhere to the [JSON API specification](http://jsonapi.org/format/#fetching-resources-responses) for fetching a resource. The `type` of the resource must be `responses`.  The `attributes` field contains a single attribute `responses`, containing the results row array in Flow Results format.
+
+_Response example:_
+
+```
+{
+    "data": {
+        "type": "flow-results-data",
+        "id": "0c364ee1-0305-42ad-9fc9-2ec5a80c55fa",
+        "attributes": {
+            "responses": [
+                [
+                    "2015-11-26 04:33:26",
+                    "11393115",
+                    "10825354",
+                    "1448506769745_42",
+                    "Man",
+                    {}
+                ],
+                [
+                    "2015-11-26 04:33:31",
+                    "11393119",
+                    "10825354",
+                    "1448506773018_89",
+                    "30.0000",
+                    {}
+                ],
+                [
+                    "2015-11-26 04:33:35",
+                    "11393126",
+                    "10825354",
+                    "1448506774930_30",
+                    "https://example-test-server.com/audiofiles/download/1448506774930_30/original",
+                    {
+                        "type": "audio",
+                        "format": "audio/wav"
+                    }
+                ],
+                [
+                    "2015-11-26 04:34:07",
+                    "11393169",
+                    "10825354",
+                    "1448506769745_42",
+                    "Woman",
+                    {}
+                ],
+                [
+                    "2015-11-26 04:34:13",
+                    "11393172",
+                    "10825354",
+                    "1448506773018_89",
+                    "40.0000",
+                    {}
+                ]
+            ]
+        },
+        "relationships": {
+            "descriptor": {
+                "links": {
+                    "self": "https://go.votomobile.org/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa"
+                }
+            },
+            "links": {
+                "self": "https://go.votomobile.org/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa/responses?page%5Bsize%5D=5",
+                "next": "https://go.votomobile.org/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa/responses?page%5Bsize%5D=5&page%5BafterCursor%5D=11393172",
+                "previous": null
+            }
+        }
+    }
+}
+```
 
 
