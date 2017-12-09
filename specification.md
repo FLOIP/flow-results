@@ -36,7 +36,7 @@ The Descriptor JSON object must contain the following required metadata properti
   <tr>
     <td>`modified`</td>
     <td>A version control indicator for the package. Timestamps are used to indicate different versions of a package's schema. This must be in the format of RFC 3339, section 5.6, "date-time".
-      <br><br>Limited changes are allowed across versions of the same package (i.e.: different versions with the same `uuid`.). Specifically, new versions of the same package may add additional `questions` within the schema; however, questions may not be removed, and the metadata for existing questions may not be changed.
+      <br><br>Limited changes are allowed across versions of the same package (i.e.: different versions with the same `id`.). Specifically, new versions of the same package may add additional `questions` within the schema; however, questions may not be removed, and the metadata for existing questions may not be changed. For more information on version support in Flow Results packages, see [Results Versioning](#results-versioning).
       <br><br>If this is the original version of the package, `created` and `modified` will be the same.
     </td>
     <td>'2017-06-30 15:38:05+00:00'</td>
@@ -287,6 +287,21 @@ Each row array shall provide exactly 6 elements ("columns") describing a single 
   </tr>
 </table>
 
+## Results Versioning
+
+A common occurrence for users is to make minor changes to an underlying flow that has already started collecting data, and to desire for data collected under new and old versions to be reported/aggregated together.  (Examples of these minor changes include adding a new question to a flow, or removing a question.)  The Flow Results specification provides vendor-optional support for limited changes to flow versions. Implementations may choose to support this functionality or not.
+
+### Option 1: No version aggregation under a Package `id`; each change to a flow creates a new package
+
+Implementations may choose this approach if they do not want to implement any aggregation of responses across multiple versions of a flow, and prefer to leave this aggregation as the responsibility of client software.  In this approach, any changes to the schema of a flow (e.g.: adding, removing, or changing questions) would create a new Package with a new independent `id`.  The implementation would serve separate results for different package `id`s.  Client software or external services could examine the Descriptor of each Package and determine, with additional user information, how to aggregate the responses together.
+
+### Option 2: Limited changes supported under a Package `id`; changes to a flow create new versions under the same `id`
+
+Implementations that wish to provide aggregation of responses across multiple versions of a flow may serve results from multiple versions under a single package `id`, according to the following constraints. Specifically, newer versions of the same package `id` may add additional `questions` within the schema; however, questions may not be removed, and the metadata for existing questions may not be changed. This implies that if a newer version of a flow removes a question from a previous version, the old question will continue to be listed in the schema for the new version. (This ensures that the schema of the most recent version contains a complete set of questions describing all responses in the aggregated resource data, including responses collected under older verions.)  The `modified` timestamp is used as a version control indicator for the Package.
+
+In this case, the response data includes responses collected under multiple versions. API access may implement the filter parameters `min-version` and `max-version` to allow clients to selectively retrieve responses from specific versions.  (If a client has cached a version of the schema from a Package descriptor, it is recommended to supply the Package's `modified` descriptor as the `max-version` when querying the API for responses, to ensure it does not receive responses from newer versions without a corresponding `question` in the cached schema.)
+
+For changes to flows that go beyond the restrictions above, new Packages with independent `id`s are required; external clients are responsible for more advanced forms of aggregation across versions of flows.
 
 ## Question Types
 
