@@ -8,15 +8,15 @@
   * [Resource Data](specification.md#resource-data-found-at-external-path)
   * [Results Versioning](specification.md#results-versioning)
   * [Question Types](specification.md#question-types)
-    * [select_one](specification.md#select_one)
-    * [select_many](specification.md#select_many)
+    * [select\_one](specification.md#select_one)
+    * [select\_many](specification.md#select_many)
     * [numeric](specification.md#numeric)
     * [open](specification.md#open)
     * [text](specification.md#text)
     * [image](specification.md#image)
     * [video](specification.md#video)
     * [audio](specification.md#audio)
-    * [geo_point](specification.md#geo_point)
+    * [geo\_point](specification.md#geo_point)
     * [datetime](specification.md#datetime)
     * [date](specification.md#date)
     * [time](specification.md#time)
@@ -31,4 +31,6 @@
       * [List all Flow Results Packages](api-specification.md#list-all-flow-results-packages)
       * [Get the Descriptor of a Package](api-specification.md#get-the-descriptor-of-a-package)
       * [Get Responses for a Package](api-specification.md#get-responses-for-a-package)
+
+
 
