@@ -22,7 +22,7 @@
     * [time](specification.md#time)
 * [API Usage](api-specification.md)
   * [API Authentication](api-specification.md#api-authentication)
-  * [API Request and Response formats](#api-request-and-response-format)
+  * [API Request and Response formats](api-specification.md#api-request-and-response-format)
   * [API Endpoints](api-specification.md#api-endpoints)
     * [Push Endpoints to Submit Flow Results](api-specification.md#push-endpoints-to-submit-flow-results-to-a-data-aggregator)
       * [Publish a Package](api-specification.md#publish-a-package)
@@ -31,6 +31,3 @@
       * [List all Flow Results Packages](api-specification.md#list-all-flow-results-packages)
       * [Get the Descriptor of a Package](api-specification.md#get-the-descriptor-of-a-package)
       * [Get Responses for a Package](api-specification.md#get-responses-for-a-package)
-
-
-
