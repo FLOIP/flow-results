@@ -132,6 +132,11 @@ There is a Descriptor file in JSON format, e.g. `flow-results-example-1.json`:
             "type":"string"
           },
           {
+            "name":"session_id",
+            "title":"Session ID",
+            "type":"string"
+          },
+          {
             "name":"question_id",
             "title":"Question ID",
             "type":"string"
@@ -205,14 +210,14 @@ Additionally, there is a data file containing the data described by this resourc
 
 ```
 [
-  [ "2017-05-23T13:35:37.356-04:00", 20394823948, 923842093, "ae54d3", "female", {"option_order": ["male","female"]} ],
-  [ "2017-05-23T13:35:47.012-04:00", 20394823950, 923842093, "ae54d7", "chocolate", {} ],
-  [ "2017-05-24T15:15:37.981-04:00", 20394823952, 923842086, "ae54d3", "male", {"option_order": ["male","female"]} ],
-  [ "2017-05-23T15:16:12.005-04:00", 20394823953, 923842086, "ae54d7", "vanilla", {} ],
-  [ "2017-05-23T15:16:20.781-04:00", 20394823954, 923842086, "ae54d8", 196, {} ],
-  [ "2017-05-23T15:16:38.119-04:00", 20394823955, 923842086, "ae54da", "I am feeling curious.", {"type": "text", "language": "eng"} ],
-  [ "2017-05-23T17:25:12.722-04:00", 20394823956, 923842093, "ae54da", "https://myexampleflowserver.org/resources/audio/20394823956.ogg", {"type": "audio", "language": "eng", "format": "audio/ogg"} ],
-  [ "2017-05-23T17:25:47-04:00", 20394823957, 923842093, "ae54db", "[35.678323, -108.25343]", {} ]
+  [ "2017-05-23T13:35:37.356-04:00", 20394823948, 923842093, 10499221, "ae54d3", "female", {"option_order": ["male","female"]} ],
+  [ "2017-05-23T13:35:47.012-04:00", 20394823950, 923842093, 10499221, "ae54d7", "chocolate", {} ],
+  [ "2017-05-24T15:15:37.981-04:00", 20394823952, 923842086, 10499224, "ae54d3", "male", {"option_order": ["male","female"]} ],
+  [ "2017-05-23T15:16:12.005-04:00", 20394823953, 923842086, 10499224, "ae54d7", "vanilla", {} ],
+  [ "2017-05-23T15:16:20.781-04:00", 20394823954, 923842086, 10499224, "ae54d8", 196, {} ],
+  [ "2017-05-23T15:16:38.119-04:00", 20394823955, 923842086, 10499224, "ae54da", "I am feeling curious.", {"type": "text", "language": "eng"} ],
+  [ "2017-05-23T17:25:12.722-04:00", 20394823956, 923842093, 10499227, "ae54da", "https://myexampleflowserver.org/resources/audio/20394823956.ogg", {"type": "audio", "language": "eng", "format": "audio/ogg"} ],
+  [ "2017-05-23T17:25:47.214-04:00", 20394823957, 923842093, 10499227, "ae54db", "[35.678323, -108.25343]", {} ]
 ]
 ```
 
