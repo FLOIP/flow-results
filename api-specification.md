@@ -91,6 +91,11 @@ Accept: application/vnd.api+json
                         "type":"string"
                      },
                      {  
+                        "name":"session_id",
+                        "title":"Session ID",
+                        "type":"string"
+                     },
+                     {  
                         "name":"question_id",
                         "title":"Question ID",
                         "type":"string"
@@ -192,6 +197,11 @@ Content-Type: application/vnd.api+json
                         "type":"string"
                      },
                      {  
+                        "name":"session_id",
+                        "title":"Session ID",
+                        "type":"string"
+                     },
+                     {  
                         "name":"question_id",
                         "title":"Question ID",
                         "type":"string"
@@ -275,6 +285,7 @@ Accept: application/vnd.api+json
                "2015-11-26 04:33:26",
                "11393115",
                "10825354",
+               "47029339",
                "1448506769745_42",
                "Man",
                {}
@@ -283,6 +294,7 @@ Accept: application/vnd.api+json
                "2015-11-26 04:33:31",
                "11393119",
                "10825354",
+               "47029339",
                "1448506773018_89",
                "30.0000",
                {}
@@ -291,6 +303,7 @@ Accept: application/vnd.api+json
                "2015-11-26 04:33:35",
                "11393126",
                "10825354",
+               "47029339",
                "1448506774930_30",
                "https://go.votomobile.org/audiofiles/download//original",
                {  
@@ -302,6 +315,7 @@ Accept: application/vnd.api+json
                "2015-11-26 04:34:07",
                "11393169",
                "10825354",
+               "47029339",
                "1448506769745_42",
                "Woman",
                {}
@@ -310,6 +324,7 @@ Accept: application/vnd.api+json
                "2015-11-26 04:34:13",
                "11393172",
                "10825354",
+               "47029339",
                "1448506773018_89",
                "40.0000",
                {}
@@ -472,6 +487,11 @@ Content-Type: application/vnd.api+json
                         "type":"string"
                      },
                      {  
+                        "name":"session_id",
+                        "title":"Session ID",
+                        "type":"string"
+                     },
+                     {  
                         "name":"question_id",
                         "title":"Question ID",
                         "type":"string"
@@ -575,6 +595,7 @@ Content-Type: application/vnd.api+json
                     "2015-11-26 04:33:26",
                     "11393115",
                     "10825354",
+                    "47029339",
                     "1448506769745_42",
                     "Man",
                     {}
@@ -583,6 +604,7 @@ Content-Type: application/vnd.api+json
                     "2015-11-26 04:33:31",
                     "11393119",
                     "10825354",
+                    "47029339",
                     "1448506773018_89",
                     "30.0000",
                     {}
@@ -591,6 +613,7 @@ Content-Type: application/vnd.api+json
                     "2015-11-26 04:33:35",
                     "11393126",
                     "10825354",
+                    "47029339",
                     "1448506774930_30",
                     "https://example-test-server.com/audiofiles/download/1448506774930_30/original",
                     {
@@ -602,6 +625,7 @@ Content-Type: application/vnd.api+json
                     "2015-11-26 04:34:07",
                     "11393169",
                     "10825354",
+                    "47029339",
                     "1448506769745_42",
                     "Woman",
                     {}
@@ -610,6 +634,7 @@ Content-Type: application/vnd.api+json
                     "2015-11-26 04:34:13",
                     "11393172",
                     "10825354",
+                    "47029339",
                     "1448506773018_89",
                     "40.0000",
                     {}
