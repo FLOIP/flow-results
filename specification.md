@@ -251,9 +251,11 @@ Each row array shall provide exactly 7 elements ("columns") describing a single 
   <tr>
     <td>1</td>
     <td>Timestamp</td>
-    <td>The date and time the response was given by the contact. The timestamp must be formatted according to RFC 3339, section 5.6, `date-time`, and must indicate the timezone offset of the timestamp. An example is the following format: `2017-05-23T13:35:37-04:00`.  If the timestamp is in UTC, the timezone offset of +00:00 shall be used, instead of the `Z` extension.
-    
-    Consistent with RFC 3339, the seconds field may include a decimal point with up to six trailing digits to indicate sub-second precision (e.g. milliseconds or microseconds), such as `2017-05-23T13:35:37.011208-04:00`. Systems are recommended to preserve as much precision as is available in the original timestamp.</td>
+    <td>
+      The date and time the response was given by the contact. The timestamp must be formatted according to RFC 3339, section 5.6, `date-time`, and must indicate the timezone offset of the timestamp. An example is the following format: `2017-05-23T13:35:37-04:00`.  If the timestamp is in UTC, the timezone offset of +00:00 shall be used, instead of the `Z` extension. 
+<br><br>
+Consistent with RFC 3339, the seconds field may include a decimal point with up to six trailing digits to indicate sub-second precision (e.g. milliseconds or microseconds), such as `2017-05-23T13:35:37.011208-04:00`. Systems are recommended to preserve as much precision as is available in the original timestamp.
+    </td>
     <td>2017-05-23T13:35:37.291-04:00</td>
   </tr>
   <tr>
@@ -261,7 +263,7 @@ Each row array shall provide exactly 7 elements ("columns") describing a single 
     <td>Row ID</td>
     <td>A unique value identifying an individual Response within the Flow Results package. The value must be unique across all Responses within the entire package.  Row IDs may be an integer or a string.   (The purpose of Row IDs is for systems offering paginated access to Responses within a Package.  Although the rows may not be ordered by Row ID, software hosting data at paginated URLs must maintain an internal ordering based on Row IDs, such that it is possible to return the next X rows after a given Row ID.)</td>
     <td>20394823948
-
+<br><br>
 '6085f5f2-80a2-423a-9f66-be3b3d777eea'</td>
   </tr>
   <tr>
@@ -269,7 +271,7 @@ Each row array shall provide exactly 7 elements ("columns") describing a single 
     <td>Contact ID</td>
     <td>A unique value identifying the Contact that submitted the Response. Contact IDs must be unique for all separate Contacts within a Flow Results Package, and may provide additional meaning between vendor platforms across Packages. Contact IDs may be an integer or a string.</td>
     <td>923842093
-
+<br><br>
 '43979e6c-6b59-4ccf-a260-4361ebbc3264'</td>
   </tr>
   <tr>
