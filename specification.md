@@ -113,6 +113,11 @@ The `schema` property must contain a `fields` object describing the 6 columns wi
       "type":"string"
     },
     {
+      "name":"session_id",
+      "title":"Session ID",
+      "type":"string"
+    },
+    {
       "name":"question_id",
       "title":"Question ID",
       "type":"string"
@@ -227,14 +232,14 @@ The Resource file or URL must provide the Response data in JSON "row array" form
 
 ```
 [
-  [ "2017-05-23T13:35:37.119-04:00", 20394823948, 923842093, "ae54d3", "female", {"option_order": ["male","female"]} ],
-  [ "2017-05-23T13:35:47.822-04:00", 20394823950, 923842093, "ae54d7", "chocolate", null ]
+  [ "2017-05-23T13:35:37.119-04:00", 20394823948, 923842093, 10499221, "ae54d3", "female", {"option_order": ["male","female"]} ],
+  [ "2017-05-23T13:35:47.822-04:00", 20394823950, 923842093, 10499221, "ae54d7", "chocolate", null ]
 ]
 ```
 
 The Resource must be valid JSON according to RFC 7159.  No enhancements or constraints are added beyond the JSON specification.
 
-Each row array shall provide exactly 6 elements ("columns") describing a single Response from a Contact. In order, the columns represent:
+Each row array shall provide exactly 7 elements ("columns") describing a single Response from a Contact. In order, the columns represent:
 
 <table>
   <tr>
@@ -246,41 +251,50 @@ Each row array shall provide exactly 6 elements ("columns") describing a single 
   <tr>
     <td>1</td>
     <td>Timestamp</td>
-    <td>The date and time the response was given by the contact. The timestamp must be formatted according to RFC 3339, section 5.6, `date-time`, and must indicate the timezone offset of the timestamp. An example is the following format: `2017-05-23T13:35:37-04:00`.  If the timestamp is in UTC, the timezone offset of +00:00 shall be used, instead of the `Z` extension.
-    
-    Consistent with RFC 3339, the seconds field may include a decimal point with up to six trailing digits to indicate sub-second precision (e.g. milliseconds or microseconds), such as `2017-05-23T13:35:37.011208-04:00`. Systems are recommended to preserve as much precision as is available in the original timestamp.</td>
+    <td>
+      The date and time the response was given by the contact. The timestamp must be formatted according to RFC 3339, section 5.6, `date-time`, and must indicate the timezone offset of the timestamp. An example is the following format: `2017-05-23T13:35:37-04:00`.  If the timestamp is in UTC, the timezone offset of +00:00 shall be used, instead of the `Z` extension. 
+<br><br>
+Consistent with RFC 3339, the seconds field may include a decimal point with up to six trailing digits to indicate sub-second precision (e.g. milliseconds or microseconds), such as `2017-05-23T13:35:37.011208-04:00`. Systems are recommended to preserve as much precision as is available in the original timestamp.
+    </td>
     <td>2017-05-23T13:35:37.291-04:00</td>
   </tr>
   <tr>
     <td>2</td>
     <td>Row ID</td>
-    <td>A unique value identifying an individual Response within the Flow Results package. The value must be unique within the entire package.  Row IDs may be an integer or a string.   (The purpose of Row IDs is for systems offering paginated access to Responses within a Package.  Although the rows may not be ordered by Row ID, software hosting data at paginated URLs must maintain an internal ordering based on Row IDs, such that it is possible to return the next X rows after a given Row ID.)</td>
+    <td>A unique value identifying an individual Response within the Flow Results package. The value must be unique across all Responses within the entire package.  Row IDs may be an integer or a string.   (The purpose of Row IDs is for systems offering paginated access to Responses within a Package.  Although the rows may not be ordered by Row ID, software hosting data at paginated URLs must maintain an internal ordering based on Row IDs, such that it is possible to return the next X rows after a given Row ID.)</td>
     <td>20394823948
-
+<br><br>
 '6085f5f2-80a2-423a-9f66-be3b3d777eea'</td>
   </tr>
   <tr>
     <td>3</td>
     <td>Contact ID</td>
-    <td>A unique value identifying the Contact that submitted the Response. Contact IDs must be unique within a Flow Results Package, and may provide additional meaning between vendor platforms across Packages. Contact IDs may be an integer or a string.</td>
+    <td>A unique value identifying the Contact that submitted the Response. Contact IDs must be unique for all separate Contacts within a Flow Results Package, and may provide additional meaning between vendor platforms across Packages. Contact IDs may be an integer or a string.</td>
     <td>923842093
-
+<br><br>
 '43979e6c-6b59-4ccf-a260-4361ebbc3264'</td>
   </tr>
   <tr>
     <td>4</td>
+    <td>Session ID</td>
+    <td>A unique value identifying a "session" or meaningful group of interactions during which the Contact submitted the Response. For example, a Session ID could link a group of responses from one phone call, one extended SMS conversation, or one ODK form submission. Session IDs may be an integer or a string.</td>
+    <td>10499221
+    </td>
+  </tr>
+  <tr>
+    <td>5</td>
     <td>Question ID</td>
     <td>A unique value identifying the Question that this Response is for.  This connects Response rows to the Question metadata in the Descriptor.</td>
     <td>'ae54d3'</td>
   </tr>
   <tr>
-    <td>5</td>
+    <td>6</td>
     <td>Response</td>
     <td>The actual value of the Response provided by the Contact.  The format of the Response is determined by nature of the Question (see below).</td>
     <td>'female'</td>
   </tr>
   <tr>
-    <td>6</td>
+    <td>7</td>
     <td>Response Metadata</td>
     <td>For any Question type, there might be additional metadata describing the Response which varies for each row. This metadata might be required or optional, depending on the Question type.  For example, for a multiple choice question, an optional metadata property is the `choice_order` that the multiple choice options were presented in.</td>
     <td>{'choice_order': ['male', 'female'] }</td>
