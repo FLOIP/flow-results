@@ -8,10 +8,10 @@ Two methods of authentication are supported for clients accessing Flow Results A
 
 ### Token-based authentication, compatible with OAuth2
 
-Implementations must support token-based authentication, via the "Authorization" HTTP header, using the OAuth2-compliant "Bearer" token method.  An example of a complete authorization header is:
+Implementations must support token-based authentication, via the "Authorization" HTTP header, using the Token method.  An example of a complete authorization header is:
 
 ```
-Authorization: Bearer 0b79bab50daca910b000d4f1a2b675d604257e42
+Authorization: Token 0b79bab50daca910b000d4f1a2b675d604257e42
 ```
 
 Implementations can determine the format of tokens.  The issuance, expiry, and exchange of tokens is left outside the scope of the Flow Results specification.
