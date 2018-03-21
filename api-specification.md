@@ -6,7 +6,7 @@ The Flow Results specification is designed to be useful in both file-based and A
 
 Two methods of authentication are supported for clients accessing Flow Results APIs.  All methods should use HTTPS for security.
 
-### Token-based authentication, compatible with OAuth2
+### Token-based authentication
 
 Implementations must support token-based authentication, via the "Authorization" HTTP header, using the Token method.  An example of a complete authorization header is:
 
