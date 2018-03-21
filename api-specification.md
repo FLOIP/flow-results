@@ -6,12 +6,12 @@ The Flow Results specification is designed to be useful in both file-based and A
 
 Two methods of authentication are supported for clients accessing Flow Results APIs.  All methods should use HTTPS for security.
 
-### Token-based authentication, compatible with OAuth2
+### Token-based authentication
 
-Implementations must support token-based authentication, via the "Authorization" HTTP header, using the OAuth2-compliant "Bearer" token method.  An example of a complete authorization header is:
+Implementations must support token-based authentication, via the "Authorization" HTTP header, using the Token method.  An example of a complete authorization header is:
 
 ```
-Authorization: Bearer 0b79bab50daca910b000d4f1a2b675d604257e42
+Authorization: Token 0b79bab50daca910b000d4f1a2b675d604257e42
 ```
 
 Implementations can determine the format of tokens.  The issuance, expiry, and exchange of tokens is left outside the scope of the Flow Results specification.
@@ -106,42 +106,36 @@ Accept: application/vnd.api+json
                         "type":"object"
                      }
                   ],
-                  "questions":[  
-                     {  
-                        "1448506769745_42":{  
-                           "type":"select_one",
-                           "label":"Are you a woman or a man?",
-                           "type_options":{  
-                              "choices":[  
-                                 "Woman",
-                                 "Man",
-                                 "Other"
-                              ]
-                           }
+                  "questions":{  
+                     "1448506769745_42":{  
+                        "type":"select_one",
+                        "label":"Are you a woman or a man?",
+                        "type_options":{  
+                           "choices":[  
+                              "Woman",
+                              "Man",
+                              "Other"
+                           ]
                         }
                      },
-                     {  
-                        "1448506773018_89":{  
-                           "type":"numeric",
-                           "label":"How old are you? Please enter your age in years.",
-                           "type_options":{  
-                              "range":[  
-                                 -99,
-                                 99
-                              ]
-                           }
+                     "1448506773018_89":{  
+                        "type":"numeric",
+                        "label":"How old are you? Please enter your age in years.",
+                        "type_options":{  
+                           "range":[  
+                              -99,
+                              99
+                           ]
                         }
                      },
-                     {  
-                        "1448506774930_30":{  
-                           "type":"open",
-                           "label":"What was the best thing that happened to you today?",
-                           "type_options":{  
+                     "1448506774930_30":{  
+                        "type":"open",
+                        "label":"What was the best thing that happened to you today?",
+                        "type_options":{  
 
-                           }
                         }
                      }
-                  ]
+                  }
                }
             }
          ]
@@ -161,11 +155,11 @@ HTTP/1.1 201 Created
 Location: https://go.votomobile.org/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa
 Content-Type: application/vnd.api+json
 
-{
-  "data": {
-    "type": "packages",
-    "id": "0c364ee1-0305-42ad-9fc9-2ec5a80c55fa",
-    "attributes": {  
+{  
+   "data":{  
+      "type":"packages",
+      "id":"0c364ee1-0305-42ad-9fc9-2ec5a80c55fa",
+      "attributes":{  
          "profile":"flow-results-package",
          "name":"standard_test_survey",
          "flow-results-specification":"1.0.0-rc1",
@@ -213,50 +207,44 @@ Content-Type: application/vnd.api+json
                         "type":"object"
                      }
                   ],
-                  "questions":[  
-                     {  
-                        "1448506769745_42":{  
-                           "type":"select_one",
-                           "label":"Are you a woman or a man?",
-                           "type_options":{  
-                              "choices":[  
-                                 "Woman",
-                                 "Man",
-                                 "Other"
-                              ]
-                           }
+                  "questions":{  
+                     "1448506769745_42":{  
+                        "type":"select_one",
+                        "label":"Are you a woman or a man?",
+                        "type_options":{  
+                           "choices":[  
+                              "Woman",
+                              "Man",
+                              "Other"
+                           ]
                         }
                      },
-                     {  
-                        "1448506773018_89":{  
-                           "type":"numeric",
-                           "label":"How old are you? Please enter your age in years.",
-                           "type_options":{  
-                              "range":[  
-                                 -99,
-                                 99
-                              ]
-                           }
+                     "1448506773018_89":{  
+                        "type":"numeric",
+                        "label":"How old are you? Please enter your age in years.",
+                        "type_options":{  
+                           "range":[  
+                              -99,
+                              99
+                           ]
                         }
                      },
-                     {  
-                        "1448506774930_30":{  
-                           "type":"open",
-                           "label":"What was the best thing that happened to you today?",
-                           "type_options":{  
+                     "1448506774930_30":{  
+                        "type":"open",
+                        "label":"What was the best thing that happened to you today?",
+                        "type_options":{  
 
-                           }
                         }
                      }
-                  ]
+                  }
                }
             }
          ]
       },
-    "links": {
-      "self": "https://go.votomobile.org/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa"
-    }
-  }
+      "links":{  
+         "self":"https://go.votomobile.org/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa"
+      }
+   }
 }
 ```
 
@@ -444,107 +432,103 @@ _Response example:_
 HTTP/1.1 200 OK
 Content-Type: application/vnd.api+json
 
-{
-    "links": {
-        "self": "https://go.votomobile.org/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa"
-    },
-    "data": {
-        "type": "packages",
-        "id": "0c364ee1-0305-42ad-9fc9-2ec5a80c55fa",
-        "attributes": {
-            "profile": "flow-results-package",
-            "name": "standard_test_survey",
-            "flow-results-specification": "1.0.0-rc1",
-            "created": "2015-11-26 02:59:24+00:00",
-            "modified": "2017-12-04 15:54:44+00:00",
-            "id": "0c364ee1-0305-42ad-9fc9-2ec5a80c55fa",
-            "title": "Standard Test Survey",
-            "resources": [
-                {
-                    "path": null,
-                    "api-data-url": "https://go.votomobile.org/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa/responses",
-                    "mediatype": "application/json",
-                    "encoding": "utf-8",
-                    "schema": {
-                        "language": "eng",
-                        "fields": [
-                            {
-                                "name": "timestamp",
-                                "title": "Timestamp",
-                                "type": "datetime"
-                            },
-                            {
-                                "name": "row_id",
-                                "title": "Row ID",
-                                "type": "string"
-                            },
-                            {
-                                "name": "contact_id",
-                                "title": "Contact ID",
-                                "type": "string"
-                            },
-                            {
-                                "name": "question_id",
-                                "title": "Question ID",
-                                "type": "string"
-                            },
-                            {
-                                "name": "response_id",
-                                "title": "Response ID",
-                                "type": "any"
-                            },
-                            {
-                                "name": "response_metadata",
-                                "title": "Response Metadata",
-                                "type": "object"
-                            }
-                        ],
-                        "questions": [
-                            {
-                                "1448506769745_42": {
-                                    "type": "select_one",
-                                    "label": "Are you a woman or a man?",
-                                    "type_options": {
-                                        "choices": [
-                                            "Woman",
-                                            "Man",
-                                            "Other"
-                                        ]
-                                    }
-                                }
-                            },
-                            {
-                                "1448506773018_89": {
-                                    "type": "numeric",
-                                    "label": "How old are you? Please enter your age in years.",
-                                    "type_options": {
-                                        "range": [
-                                            -99,
-                                            99
-                                        ]
-                                    }
-                                }
-                            },
-                            {
-                                "1448506774930_30": {
-                                    "type": "open",
-                                    "label": "What was the best thing that happened to you today?",
-                                    "type_options": {}
-                                }
-                            }
-                        ]
-                    }
-                }
-            ]
-        }
-    },
-    "relationships": {
-        "responses": {
-            "links": {
-                "related": "https://go.votomobile.org/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa/responses"
+{  
+   "links":{  
+      "self":"https://go.votomobile.org/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa"
+   },
+   "data":{  
+      "type":"packages",
+      "id":"0c364ee1-0305-42ad-9fc9-2ec5a80c55fa",
+      "attributes":{  
+         "profile":"flow-results-package",
+         "name":"standard_test_survey",
+         "flow-results-specification":"1.0.0-rc1",
+         "created":"2015-11-26 02:59:24+00:00",
+         "modified":"2017-12-04 15:54:44+00:00",
+         "id":"0c364ee1-0305-42ad-9fc9-2ec5a80c55fa",
+         "title":"Standard Test Survey",
+         "resources":[  
+            {  
+               "path":null,
+               "api-data-url":"https://go.votomobile.org/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa/responses",
+               "mediatype":"application/json",
+               "encoding":"utf-8",
+               "schema":{  
+                  "language":"eng",
+                  "fields":[  
+                     {  
+                        "name":"timestamp",
+                        "title":"Timestamp",
+                        "type":"datetime"
+                     },
+                     {  
+                        "name":"row_id",
+                        "title":"Row ID",
+                        "type":"string"
+                     },
+                     {  
+                        "name":"contact_id",
+                        "title":"Contact ID",
+                        "type":"string"
+                     },
+                     {  
+                        "name":"question_id",
+                        "title":"Question ID",
+                        "type":"string"
+                     },
+                     {  
+                        "name":"response_id",
+                        "title":"Response ID",
+                        "type":"any"
+                     },
+                     {  
+                        "name":"response_metadata",
+                        "title":"Response Metadata",
+                        "type":"object"
+                     }
+                  ],
+                  "questions":{  
+                     "1448506769745_42":{  
+                        "type":"select_one",
+                        "label":"Are you a woman or a man?",
+                        "type_options":{  
+                           "choices":[  
+                              "Woman",
+                              "Man",
+                              "Other"
+                           ]
+                        }
+                     },
+                     "1448506773018_89":{  
+                        "type":"numeric",
+                        "label":"How old are you? Please enter your age in years.",
+                        "type_options":{  
+                           "range":[  
+                              -99,
+                              99
+                           ]
+                        }
+                     },
+                     "1448506774930_30":{  
+                        "type":"open",
+                        "label":"What was the best thing that happened to you today?",
+                        "type_options":{  
+
+                        }
+                     }
+                  }
+               }
             }
-        }
-    }
+         ]
+      }
+   },
+   "relationships":{  
+      "responses":{  
+         "links":{  
+            "related":"https://go.votomobile.org/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa/responses"
+         }
+      }
+   }
 }
 ```
 
