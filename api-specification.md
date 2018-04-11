@@ -55,10 +55,10 @@ POST [Base URL]/flow-results/packages HTTP/1.1
 Content-Type: application/vnd.api+json
 Accept: application/vnd.api+json
 
-{  
-   "data":{  
+{
+   "data":{
       "type":"packages",
-      "attributes":{  
+      "attributes":{
          "profile":"flow-results-package",
          "name":"standard_test_survey",
          "flow-results-specification":"1.0.0-rc1",
@@ -66,77 +66,77 @@ Accept: application/vnd.api+json
          "modified":"2017-12-04 15:54:44+00:00",
          "id":null,
          "title":"Standard Test Survey",
-         "resources":[  
-            {  
+         "resources":[
+            {
                "path":null,
                "api-data-url":null,
                "mediatype":"application/json",
                "encoding":"utf-8",
-               "schema":{  
+               "schema":{
                   "language":"eng",
-                  "fields":[  
-                     {  
+                  "fields":[
+                     {
                         "name":"timestamp",
                         "title":"Timestamp",
                         "type":"datetime"
                      },
-                     {  
+                     {
                         "name":"row_id",
                         "title":"Row ID",
                         "type":"string"
                      },
-                     {  
+                     {
                         "name":"contact_id",
                         "title":"Contact ID",
                         "type":"string"
                      },
-                     {  
+                     {
                         "name":"session_id",
                         "title":"Session ID",
                         "type":"string"
                      },
-                     {  
+                     {
                         "name":"question_id",
                         "title":"Question ID",
                         "type":"string"
                      },
-                     {  
+                     {
                         "name":"response_id",
                         "title":"Response ID",
                         "type":"any"
                      },
-                     {  
+                     {
                         "name":"response_metadata",
                         "title":"Response Metadata",
                         "type":"object"
                      }
                   ],
-                  "questions":{  
-                     "1448506769745_42":{  
+                  "questions":{
+                     "1448506769745_42":{
                         "type":"select_one",
                         "label":"Are you a woman or a man?",
-                        "type_options":{  
-                           "choices":[  
+                        "type_options":{
+                           "choices":[
                               "Woman",
                               "Man",
                               "Other"
                            ]
                         }
                      },
-                     "1448506773018_89":{  
+                     "1448506773018_89":{
                         "type":"numeric",
                         "label":"How old are you? Please enter your age in years.",
-                        "type_options":{  
-                           "range":[  
+                        "type_options":{
+                           "range":[
                               -99,
                               99
                            ]
                         }
                      },
-                     "1448506774930_30":{  
+                     "1448506774930_30":{
                         "type":"open",
                         "label":"What was the best thing that happened to you today?",
-                        "type_options":{  
+                        "type_options":{
 
                         }
                      }
@@ -160,11 +160,11 @@ HTTP/1.1 201 Created
 Location: https://go.votomobile.org/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa
 Content-Type: application/vnd.api+json
 
-{  
-   "data":{  
+{
+   "data":{
       "type":"packages",
       "id":"0c364ee1-0305-42ad-9fc9-2ec5a80c55fa",
-      "attributes":{  
+      "attributes":{
          "profile":"flow-results-package",
          "name":"standard_test_survey",
          "flow-results-specification":"1.0.0-rc1",
@@ -172,77 +172,77 @@ Content-Type: application/vnd.api+json
          "modified":"2017-12-04 15:54:44+00:00",
          "id":"0c364ee1-0305-42ad-9fc9-2ec5a80c55fa",
          "title":"Standard Test Survey",
-         "resources":[  
-            {  
+         "resources":[
+            {
                "path":null,
                "api-data-url":"https://go.votomobile.org/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa/responses",
                "mediatype":"application/json",
                "encoding":"utf-8",
-               "schema":{  
+               "schema":{
                   "language":"eng",
-                  "fields":[  
-                     {  
+                  "fields":[
+                     {
                         "name":"timestamp",
                         "title":"Timestamp",
                         "type":"datetime"
                      },
-                     {  
+                     {
                         "name":"row_id",
                         "title":"Row ID",
                         "type":"string"
                      },
-                     {  
+                     {
                         "name":"contact_id",
                         "title":"Contact ID",
                         "type":"string"
                      },
-                     {  
+                     {
                         "name":"session_id",
                         "title":"Session ID",
                         "type":"string"
                      },
-                     {  
+                     {
                         "name":"question_id",
                         "title":"Question ID",
                         "type":"string"
                      },
-                     {  
+                     {
                         "name":"response_id",
                         "title":"Response ID",
                         "type":"any"
                      },
-                     {  
+                     {
                         "name":"response_metadata",
                         "title":"Response Metadata",
                         "type":"object"
                      }
                   ],
-                  "questions":{  
-                     "1448506769745_42":{  
+                  "questions":{
+                     "1448506769745_42":{
                         "type":"select_one",
                         "label":"Are you a woman or a man?",
-                        "type_options":{  
-                           "choices":[  
+                        "type_options":{
+                           "choices":[
                               "Woman",
                               "Man",
                               "Other"
                            ]
                         }
                      },
-                     "1448506773018_89":{  
+                     "1448506773018_89":{
                         "type":"numeric",
                         "label":"How old are you? Please enter your age in years.",
-                        "type_options":{  
-                           "range":[  
+                        "type_options":{
+                           "range":[
                               -99,
                               99
                            ]
                         }
                      },
-                     "1448506774930_30":{  
+                     "1448506774930_30":{
                         "type":"open",
                         "label":"What was the best thing that happened to you today?",
-                        "type_options":{  
+                        "type_options":{
 
                         }
                      }
@@ -251,7 +251,7 @@ Content-Type: application/vnd.api+json
             }
          ]
       },
-      "links":{  
+      "links":{
          "self":"https://go.votomobile.org/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa"
       }
    }
@@ -275,13 +275,13 @@ POST [Base URL]/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa/respo
 Content-Type: application/vnd.api+json
 Accept: application/vnd.api+json
 
-{  
-   "data":{  
+{
+   "data":{
       "type":"responses",
       "id":"0c364ee1-0305-42ad-9fc9-2ec5a80c55fa",
-      "attributes":{  
-         "responses":[  
-            [  
+      "attributes":{
+         "responses":[
+            [
                "2015-11-26 04:33:26",
                "11393115",
                "10825354",
@@ -290,7 +290,7 @@ Accept: application/vnd.api+json
                "Man",
                {}
             ],
-            [  
+            [
                "2015-11-26 04:33:31",
                "11393119",
                "10825354",
@@ -299,19 +299,19 @@ Accept: application/vnd.api+json
                "30.0000",
                {}
             ],
-            [  
+            [
                "2015-11-26 04:33:35",
                "11393126",
                "10825354",
                "47029339",
                "1448506774930_30",
                "https://go.votomobile.org/audiofiles/download//original",
-               {  
+               {
                   "type":"audio",
                   "format":"audio/wav"
                }
             ],
-            [  
+            [
                "2015-11-26 04:34:07",
                "11393169",
                "10825354",
@@ -320,7 +320,7 @@ Accept: application/vnd.api+json
                "Woman",
                {}
             ],
-            [  
+            [
                "2015-11-26 04:34:13",
                "11393172",
                "10825354",
@@ -447,14 +447,14 @@ _Response example:_
 HTTP/1.1 200 OK
 Content-Type: application/vnd.api+json
 
-{  
-   "links":{  
+{
+   "links":{
       "self":"https://go.votomobile.org/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa"
    },
-   "data":{  
+   "data":{
       "type":"packages",
       "id":"0c364ee1-0305-42ad-9fc9-2ec5a80c55fa",
-      "attributes":{  
+      "attributes":{
          "profile":"flow-results-package",
          "name":"standard_test_survey",
          "flow-results-specification":"1.0.0-rc1",
@@ -462,77 +462,77 @@ Content-Type: application/vnd.api+json
          "modified":"2017-12-04 15:54:44+00:00",
          "id":"0c364ee1-0305-42ad-9fc9-2ec5a80c55fa",
          "title":"Standard Test Survey",
-         "resources":[  
-            {  
+         "resources":[
+            {
                "path":null,
                "api-data-url":"https://go.votomobile.org/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa/responses",
                "mediatype":"application/json",
                "encoding":"utf-8",
-               "schema":{  
+               "schema":{
                   "language":"eng",
-                  "fields":[  
-                     {  
+                  "fields":[
+                     {
                         "name":"timestamp",
                         "title":"Timestamp",
                         "type":"datetime"
                      },
-                     {  
+                     {
                         "name":"row_id",
                         "title":"Row ID",
                         "type":"string"
                      },
-                     {  
+                     {
                         "name":"contact_id",
                         "title":"Contact ID",
                         "type":"string"
                      },
-                     {  
+                     {
                         "name":"session_id",
                         "title":"Session ID",
                         "type":"string"
                      },
-                     {  
+                     {
                         "name":"question_id",
                         "title":"Question ID",
                         "type":"string"
                      },
-                     {  
+                     {
                         "name":"response_id",
                         "title":"Response ID",
                         "type":"any"
                      },
-                     {  
+                     {
                         "name":"response_metadata",
                         "title":"Response Metadata",
                         "type":"object"
                      }
                   ],
-                  "questions":{  
-                     "1448506769745_42":{  
+                  "questions":{
+                     "1448506769745_42":{
                         "type":"select_one",
                         "label":"Are you a woman or a man?",
-                        "type_options":{  
-                           "choices":[  
+                        "type_options":{
+                           "choices":[
                               "Woman",
                               "Man",
                               "Other"
                            ]
                         }
                      },
-                     "1448506773018_89":{  
+                     "1448506773018_89":{
                         "type":"numeric",
                         "label":"How old are you? Please enter your age in years.",
-                        "type_options":{  
-                           "range":[  
+                        "type_options":{
+                           "range":[
                               -99,
                               99
                            ]
                         }
                      },
-                     "1448506774930_30":{  
+                     "1448506774930_30":{
                         "type":"open",
                         "label":"What was the best thing that happened to you today?",
-                        "type_options":{  
+                        "type_options":{
 
                         }
                      }
@@ -542,9 +542,9 @@ Content-Type: application/vnd.api+json
          ]
       }
    },
-   "relationships":{  
-      "responses":{  
-         "links":{  
+   "relationships":{
+      "responses":{
+         "links":{
             "related":"https://go.votomobile.org/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa/responses"
          }
       }
@@ -566,7 +566,7 @@ _Query parameters_:
 * `filter[end-timestamp]`: Only show Responses that were recorded before and on this timestamp \(inclusive\). \(This is a timestamp in the format of RFC 3339, section 5.6, `date-time`.\)
 * `page[size]`: The requested number of responses per pagination page
 * `page[afterCursor]`: The response `row_id` to requests responses after this id, when paginating forward
-* `page[beforeCursor]`: The response `row_id` to request responses prior to this id, when paginating in reverse 
+* `page[beforeCursor]`: The response `row_id` to request responses prior to this id, when paginating in reverse
 
 _Request body_: None
 
@@ -587,7 +587,7 @@ Content-Type: application/vnd.api+json
 
 {
     "data": {
-        "type": "flow-results-data",
+        "type": "responses",
         "id": "0c364ee1-0305-42ad-9fc9-2ec5a80c55fa",
         "attributes": {
             "responses": [
