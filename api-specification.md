@@ -1,20 +1,20 @@
-# API Access
+# API Usage
 
 The Flow Results specification is designed to be useful in both file-based and API-based environments. File-based usage is ideal for archiving and transferring data manually between systems. However, in many production situations, interoperable systems are likely to exchange data via HTTP-based API services. When implementations provide access to Flow Results Packages and Responses via an API, the following standardized endpoints, parameters, and envelope formats shall be used.
 
 ## API Authentication
 
-Two methods of authentication are supported for clients accessing Flow Results APIs.  All methods should use HTTPS for security.
+Two methods of authentication are supported for clients accessing Flow Results APIs. All methods should use HTTPS for security.
 
 ### Token-based authentication
 
-Implementations must support token-based authentication, via the "Authorization" HTTP header, using the Token method.  An example of a complete authorization header is:
+Implementations must support token-based authentication, via the "Authorization" HTTP header, using the Token method. An example of a complete authorization header is:
 
-```
+```text
 Authorization: Token 0b79bab50daca910b000d4f1a2b675d604257e42
 ```
 
-Implementations can determine the format of tokens.  The issuance, expiry, and exchange of tokens is left outside the scope of the Flow Results specification.
+Implementations can determine the format of tokens. The issuance, expiry, and exchange of tokens is left outside the scope of the Flow Results specification.
 
 ### HTTPS Basic Auth
 
@@ -22,11 +22,11 @@ Providing additional support for HTTPS Basic Auth is optional, but recommended.
 
 ## API Request and Response format
 
-The Flow Results API adheres to the [JSON API](http://jsonapi.org/format/) specification, version 1.0, an open standard for how a client should request that resources be fetched or modified, and how a server should respond to those requests, via JSON.  All API requests and responses defined below reflect the JSON API norms for query parameters and pagination. JSON API also introduces an envelope structure to embed the Flow Results JSON within additional metadata. Adopting JSON API allows API clients to make use of standard [JSON API libraries](http://jsonapi.org/implementations/).
+The Flow Results API adheres to the [JSON API](http://jsonapi.org/format/) specification, version 1.0, an open standard for how a client should request that resources be fetched or modified, and how a server should respond to those requests, via JSON. All API requests and responses defined below reflect the JSON API norms for query parameters and pagination. JSON API also introduces an envelope structure to embed the Flow Results JSON within additional metadata. Adopting JSON API allows API clients to make use of standard [JSON API libraries](http://jsonapi.org/implementations/).
 
 ## API Endpoints
 
-Five standard API endpoints are defined for Flow Results servers operating in the Data Aggregator role. Two "push" endpoints are used to send flow results to a system playing the Data Aggregator role.  Three "pull" endpoints are used to access flow results served by a Data Aggregator.
+Five standard API endpoints are defined for Flow Results servers operating in the Data Aggregator role. Two "push" endpoints are used to send flow results to a system playing the Data Aggregator role. Three "pull" endpoints are used to access flow results served by a Data Aggregator.
 
 Endpoints are defined relative to a base URL chosen by the implementation, i.e.:
 
@@ -44,13 +44,13 @@ _Query parameters_: None
 
 _Request body_: The request body shall specify the `type` of `packages`. It shall contain, within the `attributes` parameter, the JSON structure of the Descriptor.
 
-The `id` of the Descriptor can be omitted \(or null\) if the client wants the Data Aggregator \(server\) to assign a new UUID for this package.  If an `id` is provided, the client must ensure that the UUID does not conflict with a Package `id` that already exists on the Data Aggregator; servers must reject requests with `id` conflicts. This is consistent with the [JSON API specification](http://jsonapi.org/format/#crud-creating-client-ids) for client-generated IDs:
+The `id` of the Descriptor can be omitted \(or null\) if the client wants the Data Aggregator \(server\) to assign a new UUID for this package. If an `id` is provided, the client must ensure that the UUID does not conflict with a Package `id` that already exists on the Data Aggregator; servers must reject requests with `id` conflicts. This is consistent with the [JSON API specification](http://jsonapi.org/format/#crud-creating-client-ids) for client-generated IDs:
 
 A server MAY accept a client-generated ID along with a request to create a resource. An ID MUST be specified with an id key, the value of which MUST be a universally unique identifier. The client SHOULD use a properly generated and formatted UUID as described in RFC 4122 \[RFC4122\]. A server MUST return 403 Forbidden in response to an unsupported request to create a resource with a client-generated ID.
 
 _Request example:_
 
-```
+```text
 POST [Base URL]/flow-results/packages HTTP/1.1
 Content-Type: application/vnd.api+json
 Accept: application/vnd.api+json
@@ -155,7 +155,7 @@ The response from the server must adhere to the [JSON API specification](http://
 
 _Response example:_
 
-```
+```text
 HTTP/1.1 201 Created
 Location: https://go.votomobile.org/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa
 Content-Type: application/vnd.api+json
@@ -260,7 +260,7 @@ Content-Type: application/vnd.api+json
 
 #### Publish Responses to a Package:
 
-This endpoint is used to publish a collection of Responses for a Package to a Data Aggregator. The POST request can be used multiple times to publish additional responses in batches.  Clients should use batching whenever appropriate instead of posting responses individually.
+This endpoint is used to publish a collection of Responses for a Package to a Data Aggregator. The POST request can be used multiple times to publish additional responses in batches. Clients should use batching whenever appropriate instead of posting responses individually.
 
 _URL_: POST \[Base URL\]/flow-results/packages/\[id\]/responses
 
@@ -270,7 +270,7 @@ _Request body_: The request body shall specify the `type` of `responses`. It sha
 
 _Request example:_
 
-```
+```text
 POST [Base URL]/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa/responses HTTP/1.1
 Content-Type: application/vnd.api+json
 Accept: application/vnd.api+json
@@ -335,11 +335,11 @@ Accept: application/vnd.api+json
 }
 ```
 
-_Response body_: The response from the server must adhere to the [JSON API specification](http://jsonapi.org/format/#crud-creating-responses) for POST responses.  Additionally, servers should make use of the `204 No Content` response mechanism to report acceptance to clients without sending back long documents.
+_Response body_: The response from the server must adhere to the [JSON API specification](http://jsonapi.org/format/#crud-creating-responses) for POST responses. Additionally, servers should make use of the `204 No Content` response mechanism to report acceptance to clients without sending back long documents.
 
 _Response example:_
 
-```
+```text
 HTTP/1.1 204 No Content
 Content-Type: application/vnd.api+json
 ```
@@ -358,7 +358,7 @@ _Request body_: None
 
 _Request example:_
 
-```
+```text
 GET [Base URL]/flow-results/packages HTTP/1.1
 Accept: application/vnd.api+json
 ```
@@ -367,7 +367,7 @@ _Response body_: The response from the server must adhere to the [JSON API speci
 
 _Response example:_
 
-```
+```text
 HTTP/1.1 200 OK
 Content-Type: application/vnd.api+json
 
@@ -434,7 +434,7 @@ _Request body_: None
 
 _Request example:_
 
-```
+```text
 GET [Base URL]/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa HTTP/1.1
 Accept: application/vnd.api+json
 ```
@@ -443,7 +443,7 @@ _Response body_: The response from the server must adhere to the [JSON API speci
 
 _Response example:_
 
-```
+```text
 HTTP/1.1 200 OK
 Content-Type: application/vnd.api+json
 
@@ -554,7 +554,7 @@ Content-Type: application/vnd.api+json
 
 #### Get Responses for a Package
 
-This endpoint is used to request some or all Responses on a Flow Results Package. It supports pagination for large data sets, and a minimum set of filter parameters.  Implementations may add support for additional filters.
+This endpoint is used to request some or all Responses on a Flow Results Package. It supports pagination for large data sets, and a minimum set of filter parameters. Implementations may add support for additional filters.
 
 _URL_: GET \[Base URL\]/flow-results/packages/\[id\]/responses
 
@@ -572,16 +572,16 @@ _Request body_: None
 
 _Request example:_
 
-```
+```text
 GET [Base URL]/flow-results/packages/0c364ee1-0305-42ad-9fc9-2ec5a80c55fa/responses?page[size]=5 HTTP/1.1
 Accept: application/vnd.api+json
 ```
 
-_Response body_: The response from the server must adhere to the [JSON API specification](http://jsonapi.org/format/#fetching-resources-responses) for fetching a resource. The `type` of the resource must be `responses`.  The `attributes` field contains a single attribute `responses`, containing the results row array in Flow Results format.
+_Response body_: The response from the server must adhere to the [JSON API specification](http://jsonapi.org/format/#fetching-resources-responses) for fetching a resource. The `type` of the resource must be `responses`. The `attributes` field contains a single attribute `responses`, containing the results row array in Flow Results format.
 
 _Response example:_
 
-```
+```text
 HTTP/1.1 200 OK
 Content-Type: application/vnd.api+json
 
@@ -656,6 +656,4 @@ Content-Type: application/vnd.api+json
     }
 }
 ```
-
-
 
