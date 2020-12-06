@@ -9,11 +9,11 @@ A container and data format for describing a collection of interactions or "resp
     <tr>
       <th style="text-align:left">Authors</th>
       <th style="text-align:left">
-        <p>Mark Boots (Viamo)</p>
-        <p>Peter Lubell-Doughtie (Ona)</p>
+        <p>Mark Boots (Viamo)
+          <br />Peter Lubell-Doughtie (Ona)</p>
         <p>Eduardo Jezierski (InSTEDD)</p>
-        <p>Gustavo Gir&#xE1;ldez (InSTEDD)</p>
-        <p>Evan Wheeler (UNICEF)</p>
+        <p>Gustavo Gir&#xE1;ldez (InSTEDD)
+          <br />Evan Wheeler (UNICEF)</p>
       </th>
     </tr>
   </thead>
