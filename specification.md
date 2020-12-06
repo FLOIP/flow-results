@@ -18,7 +18,7 @@ The Descriptor JSON object must contain the following required metadata properti
 | \`flow\_results\_specification\_version\` | Indicates the version of this specification the package is compliant with. The Flow Results specification adheres to semantic versioning. | '1.0.0-rc1' |
 | \`created\` | The timestamp for when this package was created/published. This must be in the format of RFC 3339, section 5.6, "date-time". | '2017-06-30 15:35:27+00:00' |
 | \`modified\` | A version control indicator for the package. Timestamps are used to indicate different versions of a package's schema. This must be in the format of RFC 3339, section 5.6, "date-time".  Limited changes are allowed across versions of the same package \(i.e.: different versions with the same \`id\`.\). Specifically, new versions of the same package may add additional \`questions\` within the schema; however, questions may not be removed, and the metadata for existing questions may not be changed. For more information on version support in Flow Results packages, see \[Results Versioning\]\(\#results-versioning\).  If this is the original version of the package, \`created\` and \`modified\` will be the same. | '2017-06-30 15:38:05+00:00' |
-| \`id\` |  A property reserved for globally unique identifiers. The Data Packages specification supports any identifiers that are unique including UUIDs and DOIs.  Flow Results packages impose the additional requirement that \`id\`'s are Version 4 UUIDs \(RFC 4122\). The \`id\` is a required property, except when a Data Collector uses the Flow Results API to publish a new package to a Data Aggregator. In this case, the \`id\` may optionally be omitted, and will be assigned by the Data Aggregator and returned. For more information, see the section on [API Usage](api-specification.md). | "b03ec84-77fd-4270-813b-0c698943f7ce" |
+| \`id\` |  A property reserved for globally unique identifiers. The Data Packages specification supports any identifiers that are unique including UUIDs and DOIs.  Flow Results packages impose the additional requirement that \`id\`'s are Version 4 UUIDs \(RFC 4122\). The \`id\` is a required property, except when a Data Collector uses the Flow Results API to publish a new package to a Data Aggregator. In this case, the \`id\` may optionally be omitted, and will be assigned by the Data Aggregator and returned. For more information, see the section on \[API Usage\]\(\#api-usage\). | "b03ec84-77fd-4270-813b-0c698943f7ce" |
 
 The following metadata properties are recommended, consistent with the Data Packages specification:
 
@@ -32,12 +32,9 @@ The following metadata properties are recommended, consistent with the Data Pack
 
 The Resource contains the interaction results. The Resource must conform to the [Data Package Resource](https://specs.frictionlessdata.io/data-resource/) specification. Additionally:
 
-Inline data \(data in JSON format within the Descriptor\) must not be used. This means that either a file `path` or `api-data-url` must be provided for the Resource. 
+Inline data \(data in JSON format within the Descriptor\) must not be used. This means that a `path` must be provided for the Resource. The Resource path shall point to a file reference \(for packages stored on disk\) or a URL.
 
-The `access_method` of the Resource is an optional parameter, and can be either `api` or `file`: 
-
-* If the `access_method` is `file`, it indicates all responses are available in a static JSON file. \(The default if this parameter is not provided is `file`.\) When data is available via file semantics, the Resource `path` shall be a file reference or URL for the complete response data.
-* If the `access_method` is `api`, it indicates the resource can be queried using the [API Usage](api-specification.md) specification, with support for pagination and filtering. The Resource `api-data-url`must be provided with the [Responses URL](api-specification.md#get-responses-for-a-package) on the API server.
+The `access_method` of the Resource is an optional parameter, and can be either `api` or `file`. If the access method is `api`, it indicates the resource can be queried using the \[API Usage\]\(\(\#api-usage\) specification, with support for pagination and filtering. If the access method is `file`, it indicates all responses are available in a static JSON file. The default if this parameter is not provided is `file`.
 
 The `schema` property of the resource must be provided inline, and must not use an external schema file or URL.
 
@@ -134,15 +131,15 @@ The following properties are required for each question:
 
 | Property | Description | Example |
 | :--- | :--- | :--- |
-|  `type` | Describes the semantic type of the Question, which must be from the following list: multiple\_choice\_one multiple\_choice\_many numeric open text image video audio geo\_point date time datetime | 'type':'multiple\_choice\_one' |
-|  `label` | A human-readable label that can be used to present and provide context for this Question/Response. This is provided in a single default language; localization is left outside the scope of this specification. | 'label':'Are you male or female?' |
-|  `type_options` | Dependent on the \`type\`, an object representing additional metadata for this Question. Required and optional type\_options are listed below under Question Types. | 'choices':\['male', 'female'\] |
+|  \`type\` | Describes the semantic type of the Question, which must be from the following list: multiple\_choice\_one multiple\_choice\_many numeric open text image video audio geo\_point date time datetime | 'type':'multiple\_choice\_one' |
+|  \`label\` | A human-readable label that can be used to present and provide context for this Question/Response. This is provided in a single default language; localization is left outside the scope of this specification. | 'label':'Are you male or female?' |
+|  \`type\_options\` | Dependent on the \`type\`, an object representing additional metadata for this Question. Required and optional type\_options are listed below under Question Types. | 'choices':\['male', 'female'\] |
 
 The `schema` property may optionally contain a `language` property. If provided, this must be in the form of ISO 639-3, describing the language of the labels in the `questions` object. Localization of these labels is left outside the scope of the Flow Results specification.
 
 ## Resource Data \(found at external path\)
 
-The Resource `path` file \(or the `api-data-url` [endpoint](api-specification.md#get-responses-for-a-package)\) must provide the Response data in JSON "row array" format, as shown in the following example:
+The Resource file or URL must provide the Response data in JSON "row array" format, as shown in the following example:
 
 ```text
 [

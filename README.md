@@ -4,13 +4,42 @@
 
 A container and data format for describing a collection of interactions or "responses" reported by end-users of a digital system using the Flow Data paradigm. It provides for the open publication, exchange, and analysis of Flow-generated interactions across supporting platforms.
 
-| Authors | Mark Boots \(Viamo\) Peter Lubell-Doughtie \(Ona\) Eduardo Jezierski \(InSTEDD\) Gustavo Giráldez \(InSTEDD\) Evan Wheeler \(UNICEF\) |
-| :--- | :--- |
-| Media Type | TODO: once registered: application/vnd.org.flowinterop.results+json |
-| Version | 1.0.0-rc.1 |
-| Last updated | 2017-09-30 |
-| Created | 2017-03-31 |
-|  |  |
+<table>
+  <thead>
+    <tr>
+      <th style="text-align:left">Authors</th>
+      <th style="text-align:left">
+        <p>Mark Boots (Viamo)</p>
+        <p>Peter Lubell-Doughtie (Ona)</p>
+        <p>Eduardo Jezierski (InSTEDD)</p>
+        <p>Gustavo Gir&#xE1;ldez (InSTEDD)</p>
+        <p>Evan Wheeler (UNICEF)</p>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:left">Media Type</td>
+      <td style="text-align:left">TODO: once registered: application/vnd.org.flowinterop.results+json</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Version</td>
+      <td style="text-align:left">1.0.0-rc.1</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Last updated</td>
+      <td style="text-align:left">2017-09-30</td>
+    </tr>
+    <tr>
+      <td style="text-align:left">Created</td>
+      <td style="text-align:left">2017-03-31</td>
+    </tr>
+    <tr>
+      <td style="text-align:left"></td>
+      <td style="text-align:left"></td>
+    </tr>
+  </tbody>
+</table>
 
 ## Table of Contents
 
