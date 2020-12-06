@@ -34,10 +34,6 @@ A container and data format for describing a collection of interactions or "resp
       <td style="text-align:left">Created</td>
       <td style="text-align:left">2017-03-31</td>
     </tr>
-    <tr>
-      <td style="text-align:left"></td>
-      <td style="text-align:left"></td>
-    </tr>
   </tbody>
 </table>
 
