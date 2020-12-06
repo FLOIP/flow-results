@@ -4,7 +4,7 @@
 
 A container and data format for describing a collection of interactions or "responses" reported by end-users of a digital system using the Flow Data paradigm. It provides for the open publication, exchange, and analysis of Flow-generated interactions across supporting platforms.
 
-| Authors | Mark Boots \(VOTO Mobile\)  Peter Lubell-Doughtie \(Ona\)  Eduardo Jezierski \(InSTEDD\)  Gustavo Giráldez \(InSTEDD\)  Evan Wheeler \(UNICEF\) |
+| Authors | Mark Boots \(Viamo\) Peter Lubell-Doughtie \(Ona\) Eduardo Jezierski \(InSTEDD\) Gustavo Giráldez \(InSTEDD\) Evan Wheeler \(UNICEF\) |
 | :--- | :--- |
 | Media Type | TODO: once registered: application/vnd.org.flowinterop.results+json |
 | Version | 1.0.0-rc.1 |
@@ -184,7 +184,7 @@ There is a Descriptor file in JSON format, e.g. `flow-results-example-1.json`:
 }
 ```
 
-Additionally, there is a data file containing the data described by this resource, in this example, `data/flow-results-example-1-data.json`. This file provides all individual Responses in the following JSON format:
+Additionally, there is a [data file](specification.md#resource) or [API endpoint](api-specification.md#get-responses-for-a-package) containing the Responses data described by this resource, in this example, `data/flow-results-example-1-data.json`. It provides all individual Responses in the following compact JSON format:
 
 ```text
 [
