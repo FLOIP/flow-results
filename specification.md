@@ -142,7 +142,7 @@ The `schema` property may optionally contain a `language` property. If provided,
 
 ## Resource Data \(found at external path\)
 
-The Resource `path` file \(or the `api-data-url` [endpoint](api-specification.md#get-responses-for-a-package)\) must provide the Response data in JSON "row array" format, as shown in the following example:
+The Resource `path` file \(or the `api-data-url` [endpoint](api-specification.md#get-responses-for-a-package)\) must provide the Response data in JSON "row array" format, as shown in the following example: 
 
 ```text
 [
