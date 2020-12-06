@@ -32,12 +32,12 @@ The following metadata properties are recommended, consistent with the Data Pack
 
 The Resource contains the interaction results. The Resource must conform to the [Data Package Resource](https://specs.frictionlessdata.io/data-resource/) specification. Additionally: 
 
-Inline data \(data in JSON format within the Descriptor\) must not be used. This means that either a file `path` or `api-data-url` must be provided for the Resource. 
+Inline data \(data in JSON format within the Descriptor\) must not be used. This means that either a file `path` or `api_data_url` must be provided for the Resource. 
 
 The `access_method` of the Resource is an optional parameter, and can be either `api` or `file`: 
 
 * If the `access_method` is `file`, it indicates all responses are available in a static JSON file. \(The default if this parameter is not provided is `file`.\) When data is available via file semantics, the Resource `path` shall be a file reference or URL for the complete response data. 
-* If the `access_method` is `api`, it indicates the resource can be queried using the [API Usage](api-specification.md) specification, with support for pagination and filtering. The Resource `api-data-url`must be provided with the [Responses URL](api-specification.md#get-responses-for-a-package) on the API server. 
+* If the `access_method` is `api`, it indicates the resource can be queried using the [API Usage](api-specification.md) specification, with support for pagination and filtering. The Resource `api_data_url`must be provided with the [Responses URL](api-specification.md#get-responses-for-a-package) on the API server. 
 
 The `schema` property of the resource must be provided inline, and must not use an external schema file or URL. 
 
@@ -142,7 +142,7 @@ The `schema` property may optionally contain a `language` property. If provided,
 
 ## Resource Data \(found at external path\)
 
-The Resource `path` file \(or the `api-data-url` [endpoint](api-specification.md#get-responses-for-a-package)\) must provide the Response data in JSON "row array" format, as shown in the following example: 
+The Resource `path` file \(or the `api_data_url` [endpoint](api-specification.md#get-responses-for-a-package)\) must provide the Response data in JSON "row array" format, as shown in the following example: 
 
 ```text
 [
