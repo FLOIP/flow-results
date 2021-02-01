@@ -10,7 +10,7 @@ A Flow Results data package consists of one [Descriptor](https://specs.frictionl
 
 ## Descriptor
 
-The Descriptor JSON object must contain the following required metadata properties: 
+The Descriptor JSON object must contain the following required metadata properties:
 
 | Property | Description | Example |
 | :--- | :--- | :--- |
@@ -18,30 +18,30 @@ The Descriptor JSON object must contain the following required metadata properti
 | `flow_results_specification_version` | Indicates the version of this specification the package is compliant with. The Flow Results specification adheres to semantic versioning. | `'1.0.0-rc1'` |
 | `created` | The timestamp for when this package was created/published. This must be in the format of RFC 3339, section 5.6, "date-time". | `'2017-06-30 15:35:27+00:00'` |
 | `modified` | A version control indicator for the package. Timestamps are used to indicate different versions of a package's schema. This must be in the format of RFC 3339, section 5.6, "date-time".  Limited changes are allowed across versions of the same package \(i.e.: different versions with the same \`id\`.\). Specifically, new versions of the same package may add additional \`questions\` within the schema; however, questions may not be removed, and the metadata for existing questions may not be changed. For more information on version support in Flow Results packages, see \[Results Versioning\]\(\#results-versioning\).  If this is the original version of the package, \`created\` and \`modified\` will be the same. | `'2017-06-30 15:38:05+00:00'` |
-| `id` |  A property reserved for globally unique identifiers. The Data Packages specification supports any identifiers that are unique including UUIDs and DOIs.  Flow Results packages impose the additional requirement that \`id\`'s are Version 4 UUIDs \(RFC 4122\). The \`id\` is a required property, except when a Data Collector uses the Flow Results API to publish a new package to a Data Aggregator. In this case, the \`id\` may optionally be omitted, and will be assigned by the Data Aggregator and returned. For more information, see the section on [API Usage](api-specification.md).  | `"b03ec84-77fd-4270-813b-0c698943f7ce"` |
+| `id` | A property reserved for globally unique identifiers. The Data Packages specification supports any identifiers that are unique including UUIDs and DOIs.  Flow Results packages impose the additional requirement that \`id\`'s are Version 4 UUIDs \(RFC 4122\). The \`id\` is a required property, except when a Data Collector uses the Flow Results API to publish a new package to a Data Aggregator. In this case, the \`id\` may optionally be omitted, and will be assigned by the Data Aggregator and returned. For more information, see the section on [API Usage](api-specification.md). | `"b03ec84-77fd-4270-813b-0c698943f7ce"` |
 
 The following metadata properties are recommended, consistent with the Data Packages specification:
 
 | Property | Description | Example |
 | :--- | :--- | :--- |
-|  `name` | A short url-usable \(and preferably human-readable\) name of the package. This MUST be lower-case and contain only alphanumeric characters along with ".", "\_" or "-" characters. It will function as a unique identifier and therefore SHOULD be unique in relation to any registry in which this package will be deposited \(and preferably globally unique\). | `"flow-results-demo-package"` |
-|  `title` | A string providing a title or one-sentence description for this package. This provides suggested human-readable text to display as a label for results/visualization of the entire package. | `"March 2017 Malaria Protection Survey"` |
+| `name` | A short url-usable \(and preferably human-readable\) name of the package. This MUST be lower-case and contain only alphanumeric characters along with ".", "\_" or "-" characters. It will function as a unique identifier and therefore SHOULD be unique in relation to any registry in which this package will be deposited \(and preferably globally unique\). | `"flow-results-demo-package"` |
+| `title` | A string providing a title or one-sentence description for this package. This provides suggested human-readable text to display as a label for results/visualization of the entire package. | `"March 2017 Malaria Protection Survey"` |
 |  |  |  |
 
 ## Resource
 
-The Resource contains the interaction results. The Resource must conform to the [Data Package Resource](https://specs.frictionlessdata.io/data-resource/) specification. Additionally: 
+The Resource describes the interaction results. The Resource must conform to the [Data Package Resource](https://specs.frictionlessdata.io/data-resource/) specification. Additionally:
 
-Inline data \(data in JSON format within the Descriptor\) must not be used. This means that either a file `path` or `api_data_url` must be provided for the Resource. 
+Inline data \(data in JSON format within the Descriptor\) must not be used. This means that either a file `path` or `api_data_url` must be provided for the Resource.
 
-The `access_method` of the Resource is an optional parameter, and can be either `api` or `file`: 
+The `access_method` of the Resource is an optional parameter, and can be either `api` or `file`:
 
 * If the `access_method` is `file`, it indicates all responses are available in a static JSON file. \(The default if this parameter is not provided is `file`.\) When data is available via file semantics, the Resource `path` shall be a file reference or URL for the complete response data. 
 * If the `access_method` is `api`, it indicates the resource can be queried using the [API Usage](api-specification.md) specification, with support for pagination and filtering. The Resource `api_data_url`must be provided with the [Responses URL](api-specification.md#get-responses-for-a-package) on the API server. 
 
-The `schema` property of the resource must be provided inline, and must not use an external schema file or URL. 
+The `schema` property of the resource must be provided inline, and must not use an external schema file or URL.
 
-The `schema` property must contain a `fields` object describing the 6 columns within the Resource data. These fields are common to all Flow Results Packages, but are provided here for compatibility with software designed to dynamically read Tabular Data Resources: 
+The `schema` property must contain a `fields` object describing the 6 columns within the Resource data. These fields are common to all Flow Results Packages, but are provided here for compatibility with software designed to dynamically read Tabular Data Resources:
 
 ```text
 {
@@ -134,15 +134,15 @@ The following properties are required for each question:
 
 | Property | Description | Example |
 | :--- | :--- | :--- |
-|  `type` | Describes the semantic type of the Question, which must be from the following list: multiple\_choice\_one multiple\_choice\_many numeric open text image video audio geo\_point date time datetime | `'type':'multiple_choice_one'` |
-|  `label` | A human-readable label that can be used to present and provide context for this Question/Response. This is provided in a single default language; localization is left outside the scope of this specification. | `'label':'Are you male or female?'` |
-|  `type_options` | Dependent on the \`type\`, an object representing additional metadata for this Question. Required and optional type\_options are listed below under Question Types. | `'choices':['male', 'female']` |
+| `type` | Describes the semantic type of the Question, which must be from the following list: multiple\_choice\_one multiple\_choice\_many numeric open text image video audio geo\_point date time datetime | `'type':'multiple_choice_one'` |
+| `label` | A human-readable label that can be used to present and provide context for this Question/Response. This is provided in a single default language; localization is left outside the scope of this specification. | `'label':'Are you male or female?'` |
+| `type_options` | Dependent on the \`type\`, an object representing additional metadata for this Question. Required and optional type\_options are listed below under Question Types. | `'choices':['male', 'female']` |
 
 The `schema` property may optionally contain a `language` property. If provided, this must be in the form of ISO 639-3, describing the language of the labels in the `questions` object. Localization of these labels is left outside the scope of the Flow Results specification.
 
 ## Resource Data \(found at external path\)
 
-The Resource `path` file \(or the `api_data_url` [endpoint](api-specification.md#get-responses-for-a-package)\) must provide the Response data in JSON "row array" format, as shown in the following example: 
+The Resource `path` file \(or the `api_data_url` [endpoint](api-specification.md#get-responses-for-a-package)\) must provide the Response data in JSON "row array" format, as shown in the following example:
 
 ```text
 [
@@ -157,7 +157,7 @@ Each row array shall provide exactly 7 elements \("columns"\) describing a singl
 
 | \# | Column | Description | Examples |
 | :--- | :--- | :--- | :--- |
-| 1 | Timestamp |  The date and time the response was given by the contact. The timestamp must be formatted according to RFC 3339, section 5.6, \`date-time\`, and must indicate the timezone offset of the timestamp. An example is the following format: \`2017-05-23T13:35:37-04:00\`. If the timestamp is in UTC, the timezone offset of +00:00 shall be used, instead of the \`Z\` extension.   Consistent with RFC 3339, the seconds field may include a decimal point with up to six trailing digits to indicate sub-second precision \(e.g. milliseconds or microseconds\), such as \`2017-05-23T13:35:37.011208-04:00\`. Systems are recommended to preserve as much precision as is available in the original timestamp. | `2017-05-23T13:35:37.291-04:00` |
+| 1 | Timestamp | The date and time the response was given by the contact. The timestamp must be formatted according to RFC 3339, section 5.6, \`date-time\`, and must indicate the timezone offset of the timestamp. An example is the following format: \`2017-05-23T13:35:37-04:00\`. If the timestamp is in UTC, the timezone offset of +00:00 shall be used, instead of the \`Z\` extension.   Consistent with RFC 3339, the seconds field may include a decimal point with up to six trailing digits to indicate sub-second precision \(e.g. milliseconds or microseconds\), such as \`2017-05-23T13:35:37.011208-04:00\`. Systems are recommended to preserve as much precision as is available in the original timestamp. | `2017-05-23T13:35:37.291-04:00` |
 | 2 | Row ID | A unique value identifying an individual Response within the Flow Results package. The value must be unique across all Responses within the entire package. Row IDs may be an integer or a string. \(The purpose of Row IDs is for systems offering paginated access to Responses within a Package. Although the rows may not be ordered by Row ID, software hosting data at paginated URLs must maintain an internal ordering based on Row IDs, such that it is possible to return the next X rows after a given Row ID.\) | `20394823948`   `'6085f5f2-80a2-423a-9f66-be3b3d777eea'` |
 | 3 | Contact ID | A unique value identifying the Contact that submitted the Response. Contact IDs must be unique for all separate Contacts within a Flow Results Package, and may provide additional meaning between vendor platforms across Packages. Contact IDs may be an integer or a string. | `923842093`   `'43979e6c-6b59-4ccf-a260-4361ebbc3264'` |
 | 4 | Session ID | A unique value identifying a "session" or meaningful group of interactions during which the Contact submitted the Response. For example, a Session ID could link a group of responses from one phone call, one extended SMS conversation, or one ODK form submission. Session IDs may be an integer or a string. | `10499221` |
@@ -223,14 +223,14 @@ The Response must be an array of strings, one for each choice selected by the Co
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
-|  \`choices\` | Yes | Array of choices presented to the Contact | {'choices': \['roads', 'healthcare', 'education', 'jobs'\] } |
+| \`choices\` | Yes | Array of choices presented to the Contact | {'choices': \['roads', 'healthcare', 'education', 'jobs'\] } |
 |  |  |  |  |
 
 #### Response Metadata
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
-|  \`choice\_order\` | Recommended | When choices might be presented in random order across Contacts, should indicate the order the choices were presented in. | {"choice\_order": \["healthcare", "education", "jobs", "roads"\] } |
+| \`choice\_order\` | Recommended | When choices might be presented in random order across Contacts, should indicate the order the choices were presented in. | {"choice\_order": \["healthcare", "education", "jobs", "roads"\] } |
 |  |  |  |  |
 
 ### numeric
@@ -249,7 +249,7 @@ An integer or floating-point number:
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
-|  \`range\` | Optional | When the responses are to be visualized on a scale, provides the minimum and maximum relevant values of the range. | {'range':\[0,10\]} |
+| \`range\` | Optional | When the responses are to be visualized on a scale, provides the minimum and maximum relevant values of the range. | {'range':\[0,10\]} |
 |  |  |  |  |
 
 #### Response Metadata
@@ -275,8 +275,8 @@ None used at the`schema` level. \(Refer to the `type_options` within each row.\)
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
-|  \`type\` | Yes | Must be one of the other supported question types \(e.g., \`text\`, \`audio\`, \`image\`, etc.\) | 'text' 'image' |
-|  \`type\_options\` | Yes | Includes the schema metadata \(normally found in the schema\) that would be used for that response row. | {} {'format':'png'} |
+| \`type\` | Yes | Must be one of the other supported question types \(e.g., \`text\`, \`audio\`, \`image\`, etc.\) | 'text' 'image' |
+| \`type\_options\` | Yes | Includes the schema metadata \(normally found in the schema\) that would be used for that response row. | {} {'format':'png'} |
 |  |  | For additional response metadata, refer to the details for each respective question type. |  |
 
 ### text
@@ -302,7 +302,7 @@ A string:
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
-|  \`language\` | Optional | The ISO 639-3 code for the language of the response, if known. | {'language':'eng'} |
+| \`language\` | Optional | The ISO 639-3 code for the language of the response, if known. | {'language':'eng'} |
 |  |  |  |  |
 
 ### image
@@ -328,7 +328,7 @@ A string with the URL where the image can be retrieved. \(TODO: Do we want to su
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
-|  \`format\` | Recommended. | The mime type of the image. If not provided, the format may be guessed from the extension or the Content-Type header of the resource. | "image/png" |
+| \`format\` | Recommended. | The mime type of the image. If not provided, the format may be guessed from the extension or the Content-Type header of the resource. | "image/png" |
 | \`dimensions\` | Recommended | The pixel dimensions of the image, if known. If provided, this must be an array of integers, \`\[width, height\]\`. | "dimensions": \[128, 128\] |
 | \`file\_size\_mb\` | Recommended | The total file size, if known. If provided, this must be a number in megabytes \(MB\). | "file\_size\_mb": 38.35 |
 
@@ -355,11 +355,11 @@ A string with the URL where the video can be retrieved. \(TODO: Do we want to su
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
-|  \`format\` | Recommended | The mime type of the video. If not provided, the format may be guessed from the extension or the Content-Type header of the resource. | "video/mp4" |
-|  \`language\` | Optional | The ISO 639-3 code for the language of the response, if known. | {'language':'eng'} |
-|  \`dimensions\` | Recommended | The pixel dimensions of the video, if known. If provided, this must be an array of integers, \`\[width, height\]\`. | "dimensions": \[480, 360\] |
-|  \`file\_size\_mb\` | Recommended | The total file size, if known. If provided, this must be a number in megabytes \(MB\). | "file\_size\_mb": 38.35 |
-|  \`duration\_s\` | Recommended | The duration of the recording, if known. If provided, this must be a number in seconds \(s\). | "duration\_s": 16.54 |
+| \`format\` | Recommended | The mime type of the video. If not provided, the format may be guessed from the extension or the Content-Type header of the resource. | "video/mp4" |
+| \`language\` | Optional | The ISO 639-3 code for the language of the response, if known. | {'language':'eng'} |
+| \`dimensions\` | Recommended | The pixel dimensions of the video, if known. If provided, this must be an array of integers, \`\[width, height\]\`. | "dimensions": \[480, 360\] |
+| \`file\_size\_mb\` | Recommended | The total file size, if known. If provided, this must be a number in megabytes \(MB\). | "file\_size\_mb": 38.35 |
+| \`duration\_s\` | Recommended | The duration of the recording, if known. If provided, this must be a number in seconds \(s\). | "duration\_s": 16.54 |
 |  |  |  |  |
 
 ### audio
@@ -385,10 +385,10 @@ A string with the URL where the audio can be retrieved. \(TODO: Do we want to su
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
-|  \`format\` | Recommended. | The mime type of the audio. If not provided, the format may be guessed from the extension or the Content-Type header of the resource. | "audio/wav" |
-|  \`language\` | Optional | The ISO 639-3 code for the language of the response, if known. | {'language':'eng'} |
-|  \`file\_size\_mb\` | Recommended | The total file size, if known. If provided, this must be a number in megabytes \(MB\). | "file\_size\_mb": 38.35 |
-|  \`duration\_s\` | Recommended | The duration of the recording, if known. If provided, this must be a number in seconds \(s\). | "duration\_s": 16.54 |
+| \`format\` | Recommended. | The mime type of the audio. If not provided, the format may be guessed from the extension or the Content-Type header of the resource. | "audio/wav" |
+| \`language\` | Optional | The ISO 639-3 code for the language of the response, if known. | {'language':'eng'} |
+| \`file\_size\_mb\` | Recommended | The total file size, if known. If provided, this must be a number in megabytes \(MB\). | "file\_size\_mb": 38.35 |
+| \`duration\_s\` | Recommended | The duration of the recording, if known. If provided, this must be a number in seconds \(s\). | "duration\_s": 16.54 |
 |  |  |  |  |
 
 ### geo\_point
@@ -418,7 +418,7 @@ Response must be either:
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
-|  \`address\` | Optional | TODO: is this useful? | "Plot 41, Kotei Residential Rd, Kotei, Kumasi, Ashanti Region, Ghana" |
+| \`address\` | Optional | TODO: is this useful? | "Plot 41, Kotei Residential Rd, Kotei, Kumasi, Ashanti Region, Ghana" |
 |  |  |  |  |
 
 ### datetime
