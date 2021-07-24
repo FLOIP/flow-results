@@ -63,6 +63,7 @@ A container and data format for describing a collection of interactions or "resp
     * [date](specification.md#date)
     * [time](specification.md#time)
 * [API Usage](api-specification.md)
+* [Changelog](CHANGELOG.md)
 
 ## Language
 
