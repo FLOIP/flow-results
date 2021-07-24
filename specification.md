@@ -99,7 +99,8 @@ The `schema` property must additionally contain a `questions` object describing 
           "female",
           "not identified"
         ]
-      }
+      },
+      "set_contact_property": "gender"
     },
     "ae54d7":{
       "type":"multiple_choice",
@@ -137,6 +138,16 @@ The following properties are required for each question:
 | `type` | Describes the semantic type of the Question, which must be from the following list: multiple\_choice\_one multiple\_choice\_many numeric open text image video audio geo\_point date time datetime | `'type':'multiple_choice_one'` |
 | `label` | A human-readable label that can be used to present and provide context for this Question/Response. This is provided in a single default language; localization is left outside the scope of this specification. | `'label':'Are you male or female?'` |
 | `type_options` | Dependent on the \`type\`, an object representing additional metadata for this Question. Required and optional type\_options are listed below under Question Types. | `'choices':['male', 'female']` |
+
+The following properties are optional for each question:
+
+| Property | Description | Example |
+| :--- | :--- | :--- |
+| `semantic_labels` (optional, array of strings) | A user-controlled field that can be used to code the meaning of the data collected by this question in a standard taxonomy or coding system, e.g.: a FHIR ValueSet, an industry-specific coding system like SNOMED CT, or an organization's internal taxonomy service. (e.g. "SNOMEDCT::Gender finding"). Zero, one, or more semantic_labels can be specified per question.  | `"semantic_labels": ["SNOMEDCT::365873007"]` |
+| `is_personal_information` (optional, boolean) | This field can be used to indicate when responses contain or might contain personal identifying information (PII). Systems exchanging this data should use appropriate protection specific to the privacy and security risks of the data.  | `"is_personal_information": true` |
+| `set_contact_property` (optional, string) | If present and set, indicates that a response to this question persists a contact property with the name given in the string. The string represents a property key, which could be a property name, ID, or other definition as relevant between systems. The Question type can be any one of the supported Question types. | `"set_contact_property": "gender"` |
+| `set_group_membership` (optional, string) | If present and set, indicates that a response to the question represents the updated membership of the contact in a group. The question type must be a compatible type that can be parsed as a boolean (select_one, numeric, or open). The convention is that truthy response values will add the contact to the specified group, falsy response values will remove the contact from the group, and null values will not alter the group membership. | `"set_group_membership": "farmers"` |
+
 
 The `schema` property may optionally contain a `language` property. If provided, this must be in the form of ISO 639-3, describing the language of the labels in the `questions` object. Localization of these labels is left outside the scope of the Flow Results specification.
 
