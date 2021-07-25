@@ -587,7 +587,7 @@ Content-Type: application/vnd.api+json
 
 {
     "data": {
-        "type": "flow-results-data",
+        "type": "responses",
         "id": "0c364ee1-0305-42ad-9fc9-2ec5a80c55fa",
         "attributes": {
             "responses": [
