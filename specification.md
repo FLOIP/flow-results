@@ -90,6 +90,11 @@ The `schema` property must additionally contain a `questions` object describing 
 ```text
 {
   "questions":{
+    "ae70d7":{
+      "type":"message",
+      "label":"Welcome Message",
+      "type_options":{},
+    },
     "ae54d3":{
       "type":"multiple_choice",
       "label":"Are you male or female?",
@@ -137,7 +142,7 @@ The following properties are required for each question:
 | :--- | :--- | :--- |
 | `type` | Describes the semantic type of the Question, which must be from the following list: multiple\_choice\_one multiple\_choice\_many numeric open text image video audio geo\_point date time datetime | `'type':'multiple_choice_one'` |
 | `label` | A human-readable label that can be used to present and provide context for this Question/Response. This is provided in a single default language; localization is left outside the scope of this specification. | `'label':'Are you male or female?'` |
-| `type_options` | Dependent on the \`type\`, an object representing additional metadata for this Question. Required and optional type\_options are listed below under Question Types. | `'choices':['male', 'female']` |
+| `type_options` | Dependent on the \`type\`, an object representing additional metadata for this Question. Required and optional `type_options` are listed below under Question Types. | `'choices':['male', 'female']` |
 
 The following properties are optional for each question:
 
@@ -157,6 +162,7 @@ The Resource `path` file \(or the `api_data_url` [endpoint](api-specification.md
 
 ```text
 [
+  [ "2017-05-23T13:34:48.325-04:00", 20394823948, 923842093, 10499221, "ae70d7", "1", {"delivery_status": "CONSUMED"} ],
   [ "2017-05-23T13:35:37.119-04:00", 20394823948, 923842093, 10499221, "ae54d3", "female", {"option_order": ["male","female"]} ],
   [ "2017-05-23T13:35:47.822-04:00", 20394823950, 923842093, 10499221, "ae54d7", "chocolate", null ]
 ]
@@ -195,6 +201,36 @@ For changes to flows that go beyond the restrictions above, new Packages with in
 ## Question Types
 
 The following Question Types describe the nature of possible Responses. This section lists the required and optional parameters within the `schema` metadata, and within the Response Metadata for each row:
+
+### message
+
+Represents the receipt or consumption of an informational message.
+
+#### Response Format
+
+The Response must be a number: 0, 1, or a fractional value in between. 
+
+How much we know about the consumption of a message depends on the channel capabilities, for example:
+- SMS without delivery reports: All we could know is the message was sent
+- SMS with delivery reports: We can know if the message was delivered (but not if it was read)
+- Social Messaging (Facebook Messenger, WhatsApp, etc.): We can often know if the message was "read"
+- IVR: We know if the message was listened to, and additionally how much of the message was listened to.
+
+Therefore, the Response value column is proposed to be a numeric column with a boolean interpretation, applicable across channel capabilities:
+- A value of 0 is not received
+- A value of 1 means received
+- When channels can measure partial receipt, a value between 0 and 1 indicates percentage receipt. (For example, an IVR message that the contact listened to 71% of the duration can be represented as 0.71).
+
+#### Type Options \(type\_options\)
+
+None
+
+#### Response Metadata
+
+| Object | Required | Details | Example |
+| :--- | :--- | :--- | :--- |
+| delivery_status | Recommended | Provides additional details on the delivery status of the message, as relevant to the channel. Values include: `SENT` (dispatched to device), `DELIVERED` (received on the device), `CONSUMED` (read or listened to by the recipient) | {"delivery\_status": "CONSUMED" } |
+|  |  |  |  |
 
 ### select\_one
 
@@ -349,7 +385,7 @@ Represents a video submitted by the Contact
 
 #### Response format
 
-A string with the URL where the video can be retrieved. \(TODO: Do we want to support inline video data?\)
+A string with the URL where the video can be retrieved.
 
 ```text
 "https://myexampleflowserver.com/resources/videos/23429837434.mp4"
