@@ -7,14 +7,15 @@ This changelog documents material changes to the Flow Results specification. Ver
 
 ### Added
 
-- Add optional `semantic_labels` on Question definitions. This corresponds with semantic_label from the Flow Specification, providing a place for organizations to specify a coding system or taxonomy over Flow Results. (#37)
+- Add optional `semantic_labels` on Question definitions. This corresponds with semantic_label from the Flow Specification, providing a place for organizations to specify a coding system or taxonomy over Flow Results. [(#37)](https://github.com/FLOIP/flow-results/issues/37)
 - Add optional `is_pii` field on Question definitions. This provides a standard way of indicating fields that contain or might contain personal identifying information in their answers.
-- Add optional `set_contact_property` field on Question definitions. This provides a standard way for Flow Results to convey to systems that maintain a contact database that the response within a Question should set a contact property. (#41)
-- Add optional `set_group_membership` field on Question definitions. This provides a standard way for Flow Results to convey to systems that maintain a contact database that the response within a Question should add or remove a contact from a group. (#41)
+- Add optional `set_contact_property` field on Question definitions. This provides a standard way for Flow Results to convey to systems that maintain a contact database that the response within a Question should set a contact property. [(#41)](https://github.com/FLOIP/flow-results/issues/41)
+- Add optional `set_group_membership` field on Question definitions. This provides a standard way for Flow Results to convey to systems that maintain a contact database that the response within a Question should add or remove a contact from a group. [(#41)](https://github.com/FLOIP/flow-results/issues/41)
+- Add `message` question type to represent interactions with informational messages. [(#43)](https://github.com/FLOIP/flow-results/issues/43)
 
 ### Changed
 
-- Clarify that Row IDs should be compared as strings for uniqueness (#38)
+- Clarify that Row IDs should be compared as strings for uniqueness [(#38)](https://github.com/FLOIP/flow-results/issues/38)
 
 ## [1.0.0-rc.1] - 2017-09-30
 
