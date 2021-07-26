@@ -85,6 +85,8 @@ The `schema` property must contain a `fields` object describing the 6 columns wi
 }
 ```
 
+### Question object
+
 The `schema` property must additionally contain a `questions` object describing metadata for all the Questions pertaining to Responses in this package. The object identifier \(e.g.: 'ae54d3'\) of questions in this object connects to the Question ID found in each Response row:
 
 ```text

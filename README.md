@@ -50,6 +50,7 @@ A container and data format for describing a collection of interactions or "resp
   * [Resource](specification.md#resource)
   * [Resource Data \(found at external path\)](specification.md#resource-data-found-at-external-path)
   * [Question Types](specification.md#question-types)
+    * [message](specification.md#message)
     * [select\_one](specification.md#select_one)
     * [select\_many](specification.md#select_many)
     * [numeric](specification.md#numeric)
