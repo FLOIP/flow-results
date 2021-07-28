@@ -237,7 +237,6 @@ None
 | consumed\_at | Optional | Timestamp when the message was consumed, if applicable. | "consumed\_at": "2021-03-19T08:10:37+00:00" |
 | send\_failed\_at | Optional | Timestamp when the message failed to send, if applicable. | "send\_failed\_at": "2021-03-19T08:08:25+00:00" |
 | delivery\_failed\_at | Optional | Timestamp when the message failed to be delivered, if applicable. | "delivery\_failed\_at": "2021-03-19T08:08:31+00:00" |
-|  |  |  |  |
 
 ### select\_one
 
@@ -252,14 +251,12 @@ The Response must be a string; it must be one from the set of `choices`.
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 | choices | Yes | Array of choices presented to the Contact | {'choices': \['male', 'female'\] } |
-|  |  |  |  |
 
 #### Response Metadata
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 | choice\_order | Recommended | When choices might be presented in random order across Contacts, should indicate the order the choices were presented in. | {"choice\_order": \["female", "male"\] } |
-|  |  |  |  |
 
 ### select\_many
 
@@ -278,14 +275,12 @@ The Response must be an array of strings, one for each choice selected by the Co
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 | \`choices\` | Yes | Array of choices presented to the Contact | {'choices': \['roads', 'healthcare', 'education', 'jobs'\] } |
-|  |  |  |  |
 
 #### Response Metadata
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 | \`choice\_order\` | Recommended | When choices might be presented in random order across Contacts, should indicate the order the choices were presented in. | {"choice\_order": \["healthcare", "education", "jobs", "roads"\] } |
-|  |  |  |  |
 
 ### numeric
 
@@ -304,14 +299,13 @@ An integer or floating-point number:
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 | \`range\` | Optional | When the responses are to be visualized on a scale, provides the minimum and maximum relevant values of the range. | {'range':\[0,10\]} |
-|  |  |  |  |
 
 #### Response Metadata
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 |  |  |  |  |
-|  |  |  |  |
+
 
 ### open
 
@@ -350,14 +344,12 @@ A string:
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 |  |  |  |  |
-|  |  |  |  |
 
 #### Response Metadata
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 | \`language\` | Optional | The ISO 639-3 code for the language of the response, if known. | {'language':'eng'} |
-|  |  |  |  |
 
 ### image
 
@@ -375,7 +367,6 @@ A string with the URL where the image can be retrieved. \(TODO: Do we want to su
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
-|  |  |  |  |
 |  |  |  |  |
 
 #### Response Metadata
@@ -403,7 +394,6 @@ A string with the URL where the video can be retrieved.
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 |  |  |  |  |
-|  |  |  |  |
 
 #### Response Metadata
 
@@ -414,7 +404,6 @@ A string with the URL where the video can be retrieved.
 | \`dimensions\` | Recommended | The pixel dimensions of the video, if known. If provided, this must be an array of integers, \`\[width, height\]\`. | "dimensions": \[480, 360\] |
 | \`file\_size\_mb\` | Recommended | The total file size, if known. If provided, this must be a number in megabytes \(MB\). | "file\_size\_mb": 38.35 |
 | \`duration\_s\` | Recommended | The duration of the recording, if known. If provided, this must be a number in seconds \(s\). | "duration\_s": 16.54 |
-|  |  |  |  |
 
 ### audio
 
@@ -433,7 +422,6 @@ A string with the URL where the audio can be retrieved. \(TODO: Do we want to su
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 |  |  |  |  |
-|  |  |  |  |
 
 #### Response Metadata
 
@@ -443,7 +431,6 @@ A string with the URL where the audio can be retrieved. \(TODO: Do we want to su
 | \`language\` | Optional | The ISO 639-3 code for the language of the response, if known. | {'language':'eng'} |
 | \`file\_size\_mb\` | Recommended | The total file size, if known. If provided, this must be a number in megabytes \(MB\). | "file\_size\_mb": 38.35 |
 | \`duration\_s\` | Recommended | The duration of the recording, if known. If provided, this must be a number in seconds \(s\). | "duration\_s": 16.54 |
-|  |  |  |  |
 
 ### geo\_point
 
@@ -466,14 +453,12 @@ Response must be either:
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 |  |  |  |  |
-|  |  |  |  |
 
 #### Response Metadata
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 | \`address\` | Optional | TODO: is this useful? | "Plot 41, Kotei Residential Rd, Kotei, Kumasi, Ashanti Region, Ghana" |
-|  |  |  |  |
 
 ### datetime
 
@@ -492,13 +477,11 @@ A string containing the date and time in the RFC 3339 `date-time` format with ti
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 |  |  |  |  |
-|  |  |  |  |
 
 #### Response Metadata
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
-|  |  |  |  |
 |  |  |  |  |
 
 ### date
@@ -518,13 +501,11 @@ A string containing the date in the format:
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 |  |  |  |  |
-|  |  |  |  |
 
 #### Response Metadata
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
-|  |  |  |  |
 |  |  |  |  |
 
 ### time
@@ -544,12 +525,10 @@ A string containing the time in the 24h format:
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 |  |  |  |  |
-|  |  |  |  |
 
 #### Response Metadata
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
-|  |  |  |  |
 |  |  |  |  |
 
