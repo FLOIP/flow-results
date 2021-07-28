@@ -231,7 +231,12 @@ None
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
-| delivery_status | Recommended | Provides additional details on the delivery status of the message, as relevant to the channel. Values include: `SENT` (dispatched to device), `DELIVERED` (received on the device), `CONSUMED` (read or listened to by the recipient) | {"delivery\_status": "CONSUMED" } |
+| delivery_status | Recommended | Provides additional details on the delivery status of the message, as relevant to the channel. Values must be one of: `SENT` (dispatched to delivery service), `DELIVERED` (received on the device), `CONSUMED` (read or listened to by the recipient), `SEND_FAILED` (failure at sending), or `DELIVERY_FAILED` (failure at delivery)  | "delivery\_status": "CONSUMED" |
+| sent\_at | Optional | Timestamp when the message was sent, for systems that are interested in tracking times between sending, delivering, and being consumed by contacts. | "sent\_at": "2021-03-19T08:08:24+00:00" |
+| delivered\_at | Optional | Timestamp when the message was delivered, if applicable. | "delivered\_at": "2021-03-19T08:08:30+00:00" |
+| consumed\_at | Optional | Timestamp when the message was consumed, if applicable. | "consumed\_at": "2021-03-19T08:10:37+00:00" |
+| send\_failed\_at | Optional | Timestamp when the message failed to send, if applicable. | "send\_failed\_at": "2021-03-19T08:08:25+00:00" |
+| delivery\_failed\_at | Optional | Timestamp when the message failed to be delivered, if applicable. | "delivery\_failed\_at": "2021-03-19T08:08:31+00:00" |
 |  |  |  |  |
 
 ### select\_one
