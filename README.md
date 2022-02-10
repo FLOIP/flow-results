@@ -24,11 +24,11 @@ A container and data format for describing a collection of interactions or "resp
     </tr>
     <tr>
       <td style="text-align:left">Version</td>
-      <td style="text-align:left">1.0.0-rc.1</td>
+      <td style="text-align:left">1.1.0</td>
     </tr>
     <tr>
       <td style="text-align:left">Last updated</td>
-      <td style="text-align:left">2017-09-30</td>
+      <td style="text-align:left">2021-07-23</td>
     </tr>
     <tr>
       <td style="text-align:left">Created</td>
@@ -50,6 +50,7 @@ A container and data format for describing a collection of interactions or "resp
   * [Resource](specification.md#resource)
   * [Resource Data \(found at external path\)](specification.md#resource-data-found-at-external-path)
   * [Question Types](specification.md#question-types)
+    * [message](specification.md#message)
     * [select\_one](specification.md#select_one)
     * [select\_many](specification.md#select_many)
     * [numeric](specification.md#numeric)

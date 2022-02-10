@@ -85,11 +85,18 @@ The `schema` property must contain a `fields` object describing the 6 columns wi
 }
 ```
 
+### Question object
+
 The `schema` property must additionally contain a `questions` object describing metadata for all the Questions pertaining to Responses in this package. The object identifier \(e.g.: 'ae54d3'\) of questions in this object connects to the Question ID found in each Response row:
 
 ```text
 {
   "questions":{
+    "ae70d7":{
+      "type":"message",
+      "label":"Welcome Message",
+      "type_options":{},
+    },
     "ae54d3":{
       "type":"multiple_choice",
       "label":"Are you male or female?",
@@ -99,7 +106,8 @@ The `schema` property must additionally contain a `questions` object describing 
           "female",
           "not identified"
         ]
-      }
+      },
+      "set_contact_property": "gender"
     },
     "ae54d7":{
       "type":"multiple_choice",
@@ -136,7 +144,17 @@ The following properties are required for each question:
 | :--- | :--- | :--- |
 | `type` | Describes the semantic type of the Question, which must be from the following list: multiple\_choice\_one multiple\_choice\_many numeric open text image video audio geo\_point date time datetime | `'type':'multiple_choice_one'` |
 | `label` | A human-readable label that can be used to present and provide context for this Question/Response. This is provided in a single default language; localization is left outside the scope of this specification. | `'label':'Are you male or female?'` |
-| `type_options` | Dependent on the \`type\`, an object representing additional metadata for this Question. Required and optional type\_options are listed below under Question Types. | `'choices':['male', 'female']` |
+| `type_options` | Dependent on the \`type\`, an object representing additional metadata for this Question. Required and optional `type_options` are listed below under Question Types. | `'choices':['male', 'female']` |
+
+The following properties are optional for each question:
+
+| Property | Description | Example |
+| :--- | :--- | :--- |
+| `semantic_labels` (optional, array of strings) | A user-controlled field that can be used to code the meaning of the data collected by this question in a standard taxonomy or coding system, e.g.: a FHIR ValueSet, an industry-specific coding system like SNOMED CT, or an organization's internal taxonomy service. (e.g. "SNOMEDCT::Gender finding"). Zero, one, or more semantic_labels can be specified per question.  | `"semantic_labels": ["SNOMEDCT::365873007"]` |
+| `is_personal_information` (optional, boolean) | This field can be used to indicate when responses contain or might contain personal identifying information (PII). Systems exchanging this data should use appropriate protection specific to the privacy and security risks of the data.  | `"is_personal_information": true` |
+| `set_contact_property` (optional, string) | If present and set, indicates that a response to this question persists a contact property with the name given in the string. The string represents a property key, which could be a property name, ID, or other definition as relevant between systems. The Question type can be any one of the supported Question types. | `"set_contact_property": "gender"` |
+| `set_group_membership` (optional, string) | If present and set, indicates that a response to the question represents the updated membership of the contact in a group. The question type must be a compatible type that can be parsed as a boolean (select_one, numeric, or open). The convention is that truthy response values will add the contact to the specified group, falsy response values will remove the contact from the group, and null values will not alter the group membership. | `"set_group_membership": "farmers"` |
+
 
 The `schema` property may optionally contain a `language` property. If provided, this must be in the form of ISO 639-3, describing the language of the labels in the `questions` object. Localization of these labels is left outside the scope of the Flow Results specification.
 
@@ -146,6 +164,7 @@ The Resource `path` file \(or the `api_data_url` [endpoint](api-specification.md
 
 ```text
 [
+  [ "2017-05-23T13:34:48.325-04:00", 20394823948, 923842093, 10499221, "ae70d7", "1", {"delivery_status": "CONSUMED"} ],
   [ "2017-05-23T13:35:37.119-04:00", 20394823948, 923842093, 10499221, "ae54d3", "female", {"option_order": ["male","female"]} ],
   [ "2017-05-23T13:35:47.822-04:00", 20394823950, 923842093, 10499221, "ae54d7", "chocolate", null ]
 ]
@@ -185,6 +204,40 @@ For changes to flows that go beyond the restrictions above, new Packages with in
 
 The following Question Types describe the nature of possible Responses. This section lists the required and optional parameters within the `schema` metadata, and within the Response Metadata for each row:
 
+### message
+
+Represents the receipt or consumption of an informational message.
+
+#### Response Format
+
+The Response must be a number: 0, 1, or a fractional value in between. 
+
+How much we know about the consumption of a message depends on the channel capabilities, for example:
+- SMS without delivery reports: All we could know is the message was sent
+- SMS with delivery reports: We can know if the message was delivered (but not if it was read)
+- Social Messaging (Facebook Messenger, WhatsApp, etc.): We can often know if the message was "read"
+- IVR: We know if the message was listened to, and additionally how much of the message was listened to.
+
+Therefore, the Response value column is proposed to be a numeric column with a boolean interpretation, applicable across channel capabilities:
+- A value of 0 is not received
+- A value of 1 means received
+- When channels can measure partial receipt, a value between 0 and 1 indicates percentage receipt. (For example, an IVR message that the contact listened to 71% of the duration can be represented as 0.71).
+
+#### Type Options \(type\_options\)
+
+None
+
+#### Response Metadata
+
+| Object | Required | Details | Example |
+| :--- | :--- | :--- | :--- |
+| delivery_status | Recommended | Provides additional details on the delivery status of the message, as relevant to the channel. Values must be one of: `SENT` (dispatched to delivery service), `DELIVERED` (received on the device), `CONSUMED` (read or listened to by the recipient), `SEND_FAILED` (failure at sending), or `DELIVERY_FAILED` (failure at delivery)  | "delivery\_status": "CONSUMED" |
+| sent\_at | Optional | Timestamp when the message was sent, for systems that are interested in tracking times between sending, delivering, and being consumed by contacts. | "sent\_at": "2021-03-19T08:08:24+00:00" |
+| delivered\_at | Optional | Timestamp when the message was delivered, if applicable. | "delivered\_at": "2021-03-19T08:08:30+00:00" |
+| consumed\_at | Optional | Timestamp when the message was consumed, if applicable. | "consumed\_at": "2021-03-19T08:10:37+00:00" |
+| send\_failed\_at | Optional | Timestamp when the message failed to send, if applicable. | "send\_failed\_at": "2021-03-19T08:08:25+00:00" |
+| delivery\_failed\_at | Optional | Timestamp when the message failed to be delivered, if applicable. | "delivery\_failed\_at": "2021-03-19T08:08:31+00:00" |
+
 ### select\_one
 
 Represents a selection of one choice from a set of discrete choices. \(This is a classic multiple-choice question.\)
@@ -198,14 +251,12 @@ The Response must be a string; it must be one from the set of `choices`.
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 | choices | Yes | Array of choices presented to the Contact | {'choices': \['male', 'female'\] } |
-|  |  |  |  |
 
 #### Response Metadata
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 | choice\_order | Recommended | When choices might be presented in random order across Contacts, should indicate the order the choices were presented in. | {"choice\_order": \["female", "male"\] } |
-|  |  |  |  |
 
 ### select\_many
 
@@ -224,14 +275,12 @@ The Response must be an array of strings, one for each choice selected by the Co
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 | \`choices\` | Yes | Array of choices presented to the Contact | {'choices': \['roads', 'healthcare', 'education', 'jobs'\] } |
-|  |  |  |  |
 
 #### Response Metadata
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 | \`choice\_order\` | Recommended | When choices might be presented in random order across Contacts, should indicate the order the choices were presented in. | {"choice\_order": \["healthcare", "education", "jobs", "roads"\] } |
-|  |  |  |  |
 
 ### numeric
 
@@ -250,14 +299,13 @@ An integer or floating-point number:
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 | \`range\` | Optional | When the responses are to be visualized on a scale, provides the minimum and maximum relevant values of the range. | {'range':\[0,10\]} |
-|  |  |  |  |
 
 #### Response Metadata
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 |  |  |  |  |
-|  |  |  |  |
+
 
 ### open
 
@@ -296,14 +344,12 @@ A string:
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 |  |  |  |  |
-|  |  |  |  |
 
 #### Response Metadata
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 | \`language\` | Optional | The ISO 639-3 code for the language of the response, if known. | {'language':'eng'} |
-|  |  |  |  |
 
 ### image
 
@@ -322,7 +368,6 @@ A string with the URL where the image can be retrieved. \(TODO: Do we want to su
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 |  |  |  |  |
-|  |  |  |  |
 
 #### Response Metadata
 
@@ -338,7 +383,7 @@ Represents a video submitted by the Contact
 
 #### Response format
 
-A string with the URL where the video can be retrieved. \(TODO: Do we want to support inline video data?\)
+A string with the URL where the video can be retrieved.
 
 ```text
 "https://myexampleflowserver.com/resources/videos/23429837434.mp4"
@@ -348,7 +393,6 @@ A string with the URL where the video can be retrieved. \(TODO: Do we want to su
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
-|  |  |  |  |
 |  |  |  |  |
 
 #### Response Metadata
@@ -360,7 +404,6 @@ A string with the URL where the video can be retrieved. \(TODO: Do we want to su
 | \`dimensions\` | Recommended | The pixel dimensions of the video, if known. If provided, this must be an array of integers, \`\[width, height\]\`. | "dimensions": \[480, 360\] |
 | \`file\_size\_mb\` | Recommended | The total file size, if known. If provided, this must be a number in megabytes \(MB\). | "file\_size\_mb": 38.35 |
 | \`duration\_s\` | Recommended | The duration of the recording, if known. If provided, this must be a number in seconds \(s\). | "duration\_s": 16.54 |
-|  |  |  |  |
 
 ### audio
 
@@ -379,7 +422,6 @@ A string with the URL where the audio can be retrieved. \(TODO: Do we want to su
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 |  |  |  |  |
-|  |  |  |  |
 
 #### Response Metadata
 
@@ -389,7 +431,6 @@ A string with the URL where the audio can be retrieved. \(TODO: Do we want to su
 | \`language\` | Optional | The ISO 639-3 code for the language of the response, if known. | {'language':'eng'} |
 | \`file\_size\_mb\` | Recommended | The total file size, if known. If provided, this must be a number in megabytes \(MB\). | "file\_size\_mb": 38.35 |
 | \`duration\_s\` | Recommended | The duration of the recording, if known. If provided, this must be a number in seconds \(s\). | "duration\_s": 16.54 |
-|  |  |  |  |
 
 ### geo\_point
 
@@ -412,14 +453,12 @@ Response must be either:
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 |  |  |  |  |
-|  |  |  |  |
 
 #### Response Metadata
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 | \`address\` | Optional | TODO: is this useful? | "Plot 41, Kotei Residential Rd, Kotei, Kumasi, Ashanti Region, Ghana" |
-|  |  |  |  |
 
 ### datetime
 
@@ -438,13 +477,11 @@ A string containing the date and time in the RFC 3339 `date-time` format with ti
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 |  |  |  |  |
-|  |  |  |  |
 
 #### Response Metadata
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
-|  |  |  |  |
 |  |  |  |  |
 
 ### date
@@ -464,13 +501,11 @@ A string containing the date in the format:
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 |  |  |  |  |
-|  |  |  |  |
 
 #### Response Metadata
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
-|  |  |  |  |
 |  |  |  |  |
 
 ### time
@@ -490,12 +525,10 @@ A string containing the time in the 24h format:
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
 |  |  |  |  |
-|  |  |  |  |
 
 #### Response Metadata
 
 | Object | Required | Details | Example |
 | :--- | :--- | :--- | :--- |
-|  |  |  |  |
 |  |  |  |  |
 
